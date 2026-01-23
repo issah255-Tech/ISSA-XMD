@@ -38,7 +38,7 @@ async function pingCommand(sock, chatId, message) {
         const cpu = os.cpus()[0].model.split(' ')[0] + ' ' + os.cpus().length + '-Core';
 
         const premiumPing = 
-`┏━━━━━━┫ ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™ ┣━━━━━━┓
+`┏━━━━━━┫ ISSA-XMD™ ┣━━━━━━┓
 ┃  ⚡ *BOT SPEED TEST* ⚡
 ┣━━━━━━━━━━━━━━━━━━━━━
 ┃  🚀 *Latency*    : ${latency}ms
@@ -52,7 +52,7 @@ async function pingCommand(sock, chatId, message) {
 ┃  🟢 *Status* : Fully Active & Stable
 ┗━━━━━━━━━━━━━━━━━━━━━
 
-> © 2025 ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™ • Powered by NodeJS + Baileys`;
+> © 2025 ISSA-XMD™ • Powered by NodeJS + Baileys`;
 
         // Step 2: Edit the "Measuring..." message to final premium result
         await sock.sendMessage(chatId, {

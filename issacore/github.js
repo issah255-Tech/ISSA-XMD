@@ -48,7 +48,7 @@ async function githubCommand(sock, chatId, message) {
     const formatNumber = (num) => num.toLocaleString('en-US');
 
     const caption = `
-*⚡ ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ ⚡*
+*⚡ ISSA-XMD ⚡*
 
 ✨ *Repository* : \`${data.full_name}\`
 ⭐ *Stars* : ${formatNumber(data.stargazers_count)}
@@ -58,7 +58,7 @@ async function githubCommand(sock, chatId, message) {
 📅 *Last Update* : ${moment(data.updated_at).tz('Asia/Jakarta').format('DD/MM/YYYY - HH:mm:ss')} (WIB)
 🔗 *URL* : ${data.html_url}
 
-> Powered by *ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™*
+> Powered by *ISSA-XMD™*
 `.trim();
 
     const imageBuffer = fs.readFileSync(imagePath);

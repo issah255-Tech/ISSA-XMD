@@ -72,7 +72,7 @@ module.exports = {
                 // Send the processed image
                 await sock.sendMessage(chatId, {
                     image: response.data,
-                    caption: '✨ *Background removed successfully!*\n\nʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™'
+                    caption: '✨ *Background removed successfully!*\n\nISSA-XMD™'
                 }, { quoted: message });
             } else {
                 throw new Error('Failed to process image');

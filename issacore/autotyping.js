@@ -31,8 +31,8 @@ async function autotypingCommand(sock, chatId, message) {
                     forwardingScore: 1,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363398106360290@newsletter',
-                        newsletterName: 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™',
+                        newsletterJid: '120363400480173280@newsletter',
+                        newsletterName: 'ISSA-XMD™',
                         serverMessageId: -1
                     }
                 }
@@ -62,8 +62,8 @@ async function autotypingCommand(sock, chatId, message) {
                         forwardingScore: 1,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterJid: '120363398106360290@newsletter',
-                            newsletterName: 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™',
+                            newsletterJid: '120363400480173280@newsletter',
+                            newsletterName: 'ISSA-XMD™',
                             serverMessageId: -1
                         }
                     }
@@ -85,8 +85,8 @@ async function autotypingCommand(sock, chatId, message) {
                 forwardingScore: 1,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363398106360290@newsletter',
-                    newsletterName: 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™',
+                    newsletterJid: '120363400480173280@newsletter',
+                    newsletterName: 'ISSA-XMD™',
                     serverMessageId: -1
                 }
             }
@@ -100,8 +100,8 @@ async function autotypingCommand(sock, chatId, message) {
                 forwardingScore: 1,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363398106360290@newsletter',
-                    newsletterName: 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™',
+                    newsletterJid: '120363400480173280@newsletter',
+                    newsletterName: 'ISSA-XMD™',
                     serverMessageId: -1
                 }
             }

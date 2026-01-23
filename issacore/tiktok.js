@@ -125,12 +125,12 @@ async function tiktokCommand(sock, chatId, message) {
                                 await sock.sendMessage(chatId, {
                                     video: { url: mediaUrl },
                                     mimetype: "video/mp4",
-                                    caption: "ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™"
+                                    caption: "ISSA-XMD™"
                                 }, { quoted: message });
                             } else {
                                 await sock.sendMessage(chatId, {
                                     image: { url: mediaUrl },
-                                    caption: "ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™"
+                                    caption: "ISSA-XMD™"
                                 }, { quoted: message });
                             }
                         }
@@ -181,7 +181,7 @@ async function tiktokCommand(sock, chatId, message) {
                         }
                     }
                     
-                    const caption = title ? `ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™\n\n📝 Title: ${title}` : "ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™";
+                    const caption = title ? `ISSA-XMD™\n\n📝 Title: ${title}` : "ISSA-XMD™";
                     
                     await sock.sendMessage(chatId, {
                         video: videoBuffer,
@@ -216,7 +216,7 @@ async function tiktokCommand(sock, chatId, message) {
                     console.error(`Failed to download video: ${downloadError.message}`);
                     // Fallback to URL method
                     try {
-                        const caption = title ? `ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™\n\n📝 Title: ${title}` : "ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™";
+                        const caption = title ? `ISSA-XMD™\n\n📝 Title: ${title}` : "ISSA-XMD™";
                         
                         await sock.sendMessage(chatId, {
                             video: { url: videoUrl },

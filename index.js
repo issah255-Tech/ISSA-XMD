@@ -62,7 +62,7 @@ setInterval(() => {
 let phoneNumber = "255778018545"
 let owner = JSON.parse(fs.readFileSync('./data/owner.json'))
 
-global.botname = "ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ"
+global.botname = "ISSA-XMD"
 global.themeemoji = "•"
 const pairingCode = !!phoneNumber || process.argv.includes("--pairing-code")
 const useMobile = process.argv.includes("--mobile")
@@ -149,8 +149,8 @@ async function startissaBase() {
                             forwardingScore: 1,
                             isForwarded: true,
                             forwardedNewsletterMessageInfo: {
-                                newsletterJid: '120363398106360290@newsletter',
-                                newsletterName: 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™',
+                                newsletterJid: '120363400480173280@newsletter',
+                                newsletterName: 'ISSA-XMD™',
                                 serverMessageId: -1
                             }
                         }
@@ -258,8 +258,8 @@ async function startissaBase() {
                         forwardingScore: 1,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterJid: '120363398106360290@newsletter',
-                            newsletterName: 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™',
+                            newsletterJid: '120363400480173280@newsletter',
+                            newsletterName: 'ISSA-XMD™',
                             serverMessageId: -1
                         }
                     }
@@ -269,12 +269,12 @@ async function startissaBase() {
             }
 
             await delay(1999)
-            console.log(chalk.yellow(`\n\n                  ${chalk.bold.blue(`[ ${global.botname || 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ'} ]`)}\n\n`))
+            console.log(chalk.yellow(`\n\n                  ${chalk.bold.blue(`[ ${global.botname || 'ISSA-XMD'} ]`)}\n\n`))
             console.log(chalk.cyan(`< ================================================== >`))
             console.log(chalk.magenta(`\n${global.themeemoji || '•'} YT CHANNEL: xxxx`))
             console.log(chalk.magenta(`${global.themeemoji || '•'} GITHUB: xmdissa23`))
             console.log(chalk.magenta(`${global.themeemoji || '•'} WA NUMBER: ${owner}`))
-            console.log(chalk.magenta(`${global.themeemoji || '•'} CREDIT: ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™`))
+            console.log(chalk.magenta(`${global.themeemoji || '•'} CREDIT: ISSA-XMD™`))
             console.log(chalk.green(`${global.themeemoji || '•'} ☀️ Bot Connected Successfully! ✅`))
             console.log(chalk.blue(`Bot Version: ${settings.version}`))
         }

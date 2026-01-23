@@ -19,8 +19,8 @@ const READ_MORE = '\u200B'.repeat(4001);
  * Full Help Message (used only for building slides)
  */
 const HELP_MESSAGE = `
-╭▰▰〔 *ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ* 〕▰▰╮
-✖ 💠 *ʙᴏᴛ ɴᴀᴍᴇ:* ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ
+╭▰▰〔 *ISSA-XMD* 〕▰▰╮
+✖ 💠 *ʙᴏᴛ ɴᴀᴍᴇ:* ISSA-XMD
 ✖ 👑 *ᴏᴡɴᴇʀ:* 𝚂𝚒𝚛 𝙻𝙾𝙵𝚃
 ✖ ⚙️ *ᴠᴇʀꜱɪᴏɴ:* 𝚕𝚊𝚝𝚎𝚜𝚝 𝚀𝚞𝚊𝚗𝚝𝚞𝚖
 ✖ 💻 *ᴘʟᴀᴛꜰᴏʀᴍ:* 𝚀𝚞𝚊𝚗𝚝𝚞𝚖 (𝟸𝟸.𝟶𝟺)

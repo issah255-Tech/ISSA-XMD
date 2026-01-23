@@ -147,7 +147,7 @@ const soraCommand = require('./issacore/sora');
 global.packname = settings.packname;
 global.author = settings.author;
 global.channelLink = "https://whatsapp.com/channel/0029VbBDVEEHLHQdjvSGpU1q";
-global.ytch = "ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™";
+global.ytch = "ISSA-XMD™";
 
 // Add this near the top of main.js with other global configurations
 const channelInfo = {
@@ -155,8 +155,8 @@ const channelInfo = {
         forwardingScore: 1,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363398106360290@newsletter',
-            newsletterName: 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™',
+            newsletterJid: '120363400480173280@newsletter',
+            newsletterName: 'ISSA-XMD™',
             serverMessageId: -1
         }
     }

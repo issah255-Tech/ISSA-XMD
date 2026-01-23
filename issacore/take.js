@@ -14,7 +14,7 @@ async function takeCommand(sock, chatId, message, args) {
         }
 
         // Get the packname from args or use default
-        const packname = args.join(' ') || 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™';
+        const packname = args.join(' ') || 'ISSA-XMD™';
 
         try {
             // Download the sticker

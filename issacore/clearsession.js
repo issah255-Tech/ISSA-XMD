@@ -8,8 +8,8 @@ const channelInfo = {
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363398106360290@newsletter',
-            newsletterName: 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™',
+            newsletterJid: '120363400480173280@newsletter',
+            newsletterName: 'ISSA-XMD™',
             serverMessageId: -1
         }
     }

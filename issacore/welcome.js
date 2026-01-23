@@ -37,7 +37,7 @@ async function handleJoinEvent(sock, id, participants) {
             } catch (e) { console.log('Name fetch minor error'); }
 
             // Default or custom message
-            let finalMessage = customMessage || `╭╼━≪•𝙽𝙴𝚆 𝙼𝙴𝙼𝙱𝙴𝚁•≫━╾╮\n┃𝚆𝙴𝙻𝙲𝙾𝙼𝙴: @\( {displayName} 👋\n┃Member count: # \){groupMetadata.participants.length}\n┃𝚃𝙸𝙼𝙴: \( {new Date().toLocaleString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}⏰\n╰━━━━━━━━━━━━━━━╯\n\n*@ \){displayName}* Welcome to *\( {groupName}*! 🎉\n*Group 𝙳𝙴𝚂𝙲𝚁𝙸𝙿𝚃𝙸𝙾𝙽*\n \){groupDesc}\n\n> *ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™*`;
+            let finalMessage = customMessage || `╭╼━≪•𝙽𝙴𝚆 𝙼𝙴𝙼𝙱𝙴𝚁•≫━╾╮\n┃𝚆𝙴𝙻𝙲𝙾𝙼𝙴: @\( {displayName} 👋\n┃Member count: # \){groupMetadata.participants.length}\n┃𝚃𝙸𝙼𝙴: \( {new Date().toLocaleString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}⏰\n╰━━━━━━━━━━━━━━━╯\n\n*@ \){displayName}* Welcome to *\( {groupName}*! 🎉\n*Group 𝙳𝙴𝚂𝙲𝚁𝙸𝙿𝚃𝙸𝙾𝙽*\n \){groupDesc}\n\n> *ISSA-XMD™*`;
 
             finalMessage = finalMessage
                 .replace(/{user}/g, `@${displayName}`)
