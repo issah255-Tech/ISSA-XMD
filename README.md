@@ -15,29 +15,25 @@ Secure your own copy of the most powerful source code.
 
 <br>
 
-### Step 2: Instant One-Click Deployment (Most Popular 🔥)
+### Step 2: Watch Complete Tutorial
+
+Full setup guide with step-by-step instructions
+
+<div align="center">
+  <a href="https://youtu.be/wJKMV0BSqpE?si=6Y11rPD0t2ykoxB8">
+    <img src="https://img.shields.io/badge/🎥 COMPLETE SETUP TUTORIAL-FF0000?style=for-the-badge&logo=youtube&logoColor=white" height="55"/>
+  </a>
+</div>
+
+<br>
+
+### Step 3: Instant One-Click Deployment (Most Popular 🔥)
 
 Zero setup · 24/7 online · Lightning fast
 
 <div align="center">
   <a href="https://bot-hosting.net/?aff=1068419752923508776">
     <img src="https://img.shields.io/badge/⚡ BOT HOSTING NET (Instant)-00ff88?style=for-the-badge&logo=rocket&logoColor=black" alt="Deploy Instant"/>
-  </a>
-  <br><br>
-  <a href="https://youtu.be/meE_EWEuyGk?si=gJxaiFZlEMluL1oB">
-    <img src="https://img.shields.io/badge/🎥 View Tutorial (YouTube)-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="View Tutorial"/>
-  </a>
-</div>
-
-<br>
-
-### 🔥 Beast-Mode VPS (PetroSky)
-
-Full control · Unlimited resources · For serious devs
-
-<div align="center">
-  <a href="https://client.petrosky.io/aff.php?aff=394" target="_blank">
-    <img src="https://img.shields.io/badge/🖥️ PETROSKY VPS - GOD MODE-ff0066?style=for-the-badge&logo=linux&logoColor=white" alt="VPS"/>
   </a>
 </div>
 
