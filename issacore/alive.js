@@ -40,7 +40,7 @@ async function aliveCommand(sock, chatId, message) {
         // 2️⃣ Send WORKING audio (Opus encoded .ogg) - tested December 2025
         await sock.sendMessage(chatId, {
             audio: { 
-                url: "./loft.mp3"   // ← NEW 100% WORKING VOICE
+                url: "./issa.mp3"   // ← NEW 100% WORKING VOICE
             },
             mimetype: "audio/mpeg",
             ptt: false,                                 // false = normal voice message (shows waveform)

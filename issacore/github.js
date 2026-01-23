@@ -10,7 +10,7 @@ const path = require('path');
  * @param {Object} message - Original message object for quoting
  */
 async function githubCommand(sock, chatId, message) {
-  const repoUrl = 'https://api.github.com/repos/xmdloft23/loft-quantum';
+  const repoUrl = 'https://api.github.com/repos/xmdissa23/issa-quantum';
   const imagePath = path.resolve('./image.jpg');
 
   // Check if image exists first
@@ -25,7 +25,7 @@ async function githubCommand(sock, chatId, message) {
   try {
     const response = await fetch(repoUrl, {
       headers: {
-        'User-Agent': 'Loft-Quantum-Bot', // Required by GitHub API
+        'User-Agent': 'issa-Quantum-Bot', // Required by GitHub API
         'Accept': 'application/vnd.github.v3+json',
       },
       timeout: 10000, // 10 second timeout

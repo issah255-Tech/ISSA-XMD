@@ -41,7 +41,7 @@ async function ownerCommand(sock, chatId, message) {
         // Removed entire second section (image message with template buttons)
 
         // Third: Professional vCard + QR code for easy contact saving/scanning
-        const projectUrl = settings.updateZipUrl || 'https://github.com/xmdloft23/loft-quantum';
+        const projectUrl = settings.updateZipUrl || 'https://github.com/xmdissa23/issa-quantum';
         const fbUrl = settings.facebookUrl || 'https://www.facebook.com';
 
         const vcard = `BEGIN:VCARD\n` +

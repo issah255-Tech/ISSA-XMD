@@ -79,13 +79,13 @@ const question = (text) => {
 }
 
 
-async function startLoftBase() {
+async function startissaBase() {
     try {
         let { version, isLatest } = await fetchLatestBaileysVersion()
         const { state, saveCreds } = await useMultiFileAuthState(`./session`)
         const msgRetryCounterCache = new NodeCache()
 
-        const LoftBase = makeWASocket({
+        const issaBase = makeWASocket({
             version,
             logger: pino({ level: 'silent' }),
             printQRInTerminal: !pairingCode,
@@ -109,41 +109,41 @@ async function startLoftBase() {
         })
 
         // Save credentials when they update
-        LoftBase.ev.on('creds.update', saveCreds)
+        issaBase.ev.on('creds.update', saveCreds)
 
-    store.bind(LoftBase.ev)
+    store.bind(issaBase.ev)
 
     // Message handling
-    LoftBase.ev.on('messages.upsert', async chatUpdate => {
+    issaBase.ev.on('messages.upsert', async chatUpdate => {
         try {
             const mek = chatUpdate.messages[0]
             if (!mek.message) return
             mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
             if (mek.key && mek.key.remoteJid === 'status@broadcast') {
-                await handleStatus(LoftBase, chatUpdate);
+                await handleStatus(issaBase, chatUpdate);
                 return;
             }
             // In private mode, only block non-group messages (allow groups for moderation)
-            // Note: LoftBase.public is not synced, so we check mode in main.js instead
+            // Note: issaBase.public is not synced, so we check mode in main.js instead
             // This check is kept for backward compatibility but mainly blocks DMs
-            if (!LoftBase.public && !mek.key.fromMe && chatUpdate.type === 'notify') {
+            if (!issaBase.public && !mek.key.fromMe && chatUpdate.type === 'notify') {
                 const isGroup = mek.key?.remoteJid?.endsWith('@g.us')
                 if (!isGroup) return // Block DMs in private mode, but allow group messages
             }
             if (mek.key.id.startsWith('BAE5') && mek.key.id.length === 16) return
 
             // Clear message retry cache to prevent memory bloat
-            if (LoftBase?.msgRetryCounterCache) {
-                LoftBase.msgRetryCounterCache.clear()
+            if (issaBase?.msgRetryCounterCache) {
+                issaBase.msgRetryCounterCache.clear()
             }
 
             try {
-                await handleMessages(LoftBase, chatUpdate, true)
+                await handleMessages(issaBase, chatUpdate, true)
             } catch (err) {
                 console.error("Error in handleMessages:", err)
                 // Only try to send error message if we have a valid chatId
                 if (mek.key && mek.key.remoteJid) {
-                    await LoftBase.sendMessage(mek.key.remoteJid, {
+                    await issaBase.sendMessage(mek.key.remoteJid, {
                         text: '❌ An error occurred while processing your message.',
                         contextInfo: {
                             forwardingScore: 1,
@@ -163,7 +163,7 @@ async function startLoftBase() {
     })
 
     // Add these event handlers for better functionality
-    LoftBase.decodeJid = (jid) => {
+    issaBase.decodeJid = (jid) => {
         if (!jid) return jid
         if (/:\d+@/gi.test(jid)) {
             let decode = jidDecode(jid) || {}
@@ -171,37 +171,37 @@ async function startLoftBase() {
         } else return jid
     }
 
-    LoftBase.ev.on('contacts.update', update => {
+    issaBase.ev.on('contacts.update', update => {
         for (let contact of update) {
-            let id = LoftBase.decodeJid(contact.id)
+            let id = issaBase.decodeJid(contact.id)
             if (store && store.contacts) store.contacts[id] = { id, name: contact.notify }
         }
     })
 
-    LoftBase.getName = (jid, withoutContact = false) => {
-        id = LoftBase.decodeJid(jid)
-        withoutContact = LoftBase.withoutContact || withoutContact
+    issaBase.getName = (jid, withoutContact = false) => {
+        id = issaBase.decodeJid(jid)
+        withoutContact = issaBase.withoutContact || withoutContact
         let v
         if (id.endsWith("@g.us")) return new Promise(async (resolve) => {
             v = store.contacts[id] || {}
-            if (!(v.name || v.subject)) v = LoftBase.groupMetadata(id) || {}
+            if (!(v.name || v.subject)) v = issaBase.groupMetadata(id) || {}
             resolve(v.name || v.subject || PhoneNumber('+' + id.replace('@s.whatsapp.net', '')).getNumber('international'))
         })
         else v = id === '0@s.whatsapp.net' ? {
             id,
             name: 'WhatsApp'
-        } : id === LoftBase.decodeJid(LoftBase.user.id) ?
-            LoftBase.user :
+        } : id === issaBase.decodeJid(issaBase.user.id) ?
+            issaBase.user :
             (store.contacts[id] || {})
         return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNumber('+' + jid.replace('@s.whatsapp.net', '')).getNumber('international')
     }
 
-    LoftBase.public = true
+    issaBase.public = true
 
-    LoftBase.serializeM = (m) => smsg(LoftBase, m, store)
+    issaBase.serializeM = (m) => smsg(issaBase, m, store)
 
     // Handle pairing code
-    if (pairingCode && !LoftBase.authState.creds.registered) {
+    if (pairingCode && !issaBase.authState.creds.registered) {
         if (useMobile) throw new Error('Cannot use pairing code with mobile api')
 
         let phoneNumber
@@ -223,7 +223,7 @@ async function startLoftBase() {
 
         setTimeout(async () => {
             try {
-                let code = await LoftBase.requestPairingCode(phoneNumber)
+                let code = await issaBase.requestPairingCode(phoneNumber)
                 code = code?.match(/.{1,4}/g)?.join("-") || code
                 console.log(chalk.black(chalk.bgGreen(`Your Pairing Code : `)), chalk.black(chalk.white(code)))
                 console.log(chalk.yellow(`\nPlease enter this code in your WhatsApp app:\n1. Open WhatsApp\n2. Go to Settings > Linked Devices\n3. Tap "Link a Device"\n4. Enter the code shown above`))
@@ -235,7 +235,7 @@ async function startLoftBase() {
     }
 
     // Connection handling
-    LoftBase.ev.on('connection.update', async (s) => {
+    issaBase.ev.on('connection.update', async (s) => {
         const { connection, lastDisconnect, qr } = s
         
         if (qr) {
@@ -248,11 +248,11 @@ async function startLoftBase() {
         
         if (connection == "open") {
             console.log(chalk.magenta(` `))
-            console.log(chalk.yellow(`🌿Connected to => ` + JSON.stringify(LoftBase.user, null, 2)))
+            console.log(chalk.yellow(`🌿Connected to => ` + JSON.stringify(issaBase.user, null, 2)))
 
             try {
-                const botNumber = LoftBase.user.id.split(':')[0] + '@s.whatsapp.net';
-                await LoftBase.sendMessage(botNumber, {
+                const botNumber = issaBase.user.id.split(':')[0] + '@s.whatsapp.net';
+                await issaBase.sendMessage(botNumber, {
                     text: `🌟 Bot Connected Successfully!\n\n🌟 Time: ${new Date().toLocaleString()}\n🌟 Status: Online and Ready!\n\n🌟Make sure to join below channel`,
                     contextInfo: {
                         forwardingScore: 1,
@@ -272,7 +272,7 @@ async function startLoftBase() {
             console.log(chalk.yellow(`\n\n                  ${chalk.bold.blue(`[ ${global.botname || 'ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ'} ]`)}\n\n`))
             console.log(chalk.cyan(`< ================================================== >`))
             console.log(chalk.magenta(`\n${global.themeemoji || '•'} YT CHANNEL: xxxx`))
-            console.log(chalk.magenta(`${global.themeemoji || '•'} GITHUB: xmdloft23`))
+            console.log(chalk.magenta(`${global.themeemoji || '•'} GITHUB: xmdissa23`))
             console.log(chalk.magenta(`${global.themeemoji || '•'} WA NUMBER: ${owner}`))
             console.log(chalk.magenta(`${global.themeemoji || '•'} CREDIT: ʟᴏꜰᴛ Qᴜᴀɴᴛᴜᴍ™`))
             console.log(chalk.green(`${global.themeemoji || '•'} ☀️ Bot Connected Successfully! ✅`))
@@ -298,7 +298,7 @@ async function startLoftBase() {
             if (shouldReconnect) {
                 console.log(chalk.yellow('Reconnecting...'))
                 await delay(5000)
-                startLoftBase()
+                startissaBase()
             }
         }
     })
@@ -307,7 +307,7 @@ async function startLoftBase() {
     const antiCallNotified = new Set();
 
     // Anticall handler: block callers when enabled
-    LoftBase.ev.on('call', async (calls) => {
+    issaBase.ev.on('call', async (calls) => {
         try {
             const { readState: readAnticallState } = require('./commands/anticall');
             const state = readAnticallState();
@@ -318,10 +318,10 @@ async function startLoftBase() {
                 try {
                     // First: attempt to reject the call if supported
                     try {
-                        if (typeof LoftBase.rejectCall === 'function' && call.id) {
-                            await LoftBase.rejectCall(call.id, callerJid);
-                        } else if (typeof LoftBase.sendCallOfferAck === 'function' && call.id) {
-                            await LoftBase.sendCallOfferAck(call.id, callerJid, 'reject');
+                        if (typeof issaBase.rejectCall === 'function' && call.id) {
+                            await issaBase.rejectCall(call.id, callerJid);
+                        } else if (typeof issaBase.sendCallOfferAck === 'function' && call.id) {
+                            await issaBase.sendCallOfferAck(call.id, callerJid, 'reject');
                         }
                     } catch {}
 
@@ -329,12 +329,12 @@ async function startLoftBase() {
                     if (!antiCallNotified.has(callerJid)) {
                         antiCallNotified.add(callerJid);
                         setTimeout(() => antiCallNotified.delete(callerJid), 60000);
-                        await LoftBase.sendMessage(callerJid, { text: '📵 Anticall is enabled. Your call was rejected and you will be blocked.' });
+                        await issaBase.sendMessage(callerJid, { text: '📵 Anticall is enabled. Your call was rejected and you will be blocked.' });
                     }
                 } catch {}
                 // Then: block after a short delay to ensure rejection and message are processed
                 setTimeout(async () => {
-                    try { await LoftBase.updateBlockStatus(callerJid, 'block'); } catch {}
+                    try { await issaBase.updateBlockStatus(callerJid, 'block'); } catch {}
                 }, 800);
             }
         } catch (e) {
@@ -342,35 +342,35 @@ async function startLoftBase() {
         }
     });
 
-    LoftBase.ev.on('group-participants.update', async (update) => {
-        await handleGroupParticipantUpdate(LoftBase, update);
+    issaBase.ev.on('group-participants.update', async (update) => {
+        await handleGroupParticipantUpdate(issaBase, update);
     });
 
-    LoftBase.ev.on('messages.upsert', async (m) => {
+    issaBase.ev.on('messages.upsert', async (m) => {
         if (m.messages[0].key && m.messages[0].key.remoteJid === 'status@broadcast') {
-            await handleStatus(LoftBase, m);
+            await handleStatus(issaBase, m);
         }
     });
 
-    LoftBase.ev.on('status.update', async (status) => {
-        await handleStatus(LoftBase, status);
+    issaBase.ev.on('status.update', async (status) => {
+        await handleStatus(issaBase, status);
     });
 
-    LoftBase.ev.on('messages.reaction', async (status) => {
-        await handleStatus(LoftBase, status);
+    issaBase.ev.on('messages.reaction', async (status) => {
+        await handleStatus(issaBase, status);
     });
 
-    return LoftBase
+    return issaBase
     } catch (error) {
-        console.error('Error in startLoftBase:', error)
+        console.error('Error in startissaBase:', error)
         await delay(5000)
-        startLoftBase()
+        startissaBase()
     }
 }
 
 
 // Start the bot with error handling
-startLoftBase().catch(error => {
+startissaBase().catch(error => {
     console.error('Fatal error:', error)
     process.exit(1)
 })

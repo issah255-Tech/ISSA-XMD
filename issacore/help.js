@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-//  MR LOFT – SLIDE MENU 
+//  MR issa – SLIDE MENU 
 // ──────────────────────────────────────────────────────────────
 const settings = require('../settings');
 const axios = require('axios');
