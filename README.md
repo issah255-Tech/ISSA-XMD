@@ -39,6 +39,19 @@ Zero setup · 24/7 online · Lightning fast
 
 <br>
 
+## 📡 DEPLOYMENT SITES
+
+<p align="center">Deploy your <strong>ISSA-XMD</strong> with one click on your favorite hosting platforms.</p>
+
+<div align="center">
+  <table>
+    <tr>
+      <!-- Heroku (with rocket logo on left) -->
+      <td><a href="https://dashboard.heroku.com/new?template=https://github.com/issah255-Tech/ISSA-XMD" target="_blank">
+  <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=rocket&logoColor=white"/>
+</a></td>
+
+
 ### 💎 Katabump Elite Panel (Private & Fastest)
 
 Only the real ones know about this panel 
