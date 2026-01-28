@@ -1,102 +1,101 @@
-# ISSA-XMD™ 🗽 ᴘʀᴇᴍɪᴜᴍ ʙᴏᴛ
+# 🚀 ISSA-XMD™ Premium Bot
 
 <img src="https://files.catbox.moe/snt5ow.jpg" width="80" align="right"/>
 
-Get your **ISSA-XMD** running in seconds with exclusive, high-speed deployment options used by pro developers worldwide.
+Get your **ISSA-XMD™** running in seconds with exclusive, high-speed deployment options used by pro developers worldwide.
 
-### Step 1: Fork the Official Repository
+---
+
+## 📋 Quick Start Guide
+
+### Step 1: Fork the Repository
 Secure your own copy of the most powerful source code.
 
 <div align="center">
   <a href="https://github.com/issah255-Tech/ISSA-XMD/fork">
-    <img src="https://img.shields.io/badge/🔗 FORK REPOSITORY-000000?style=for-the-badge&logo=github&logoColor=white" alt="Fork"/>
+    <img src="https://img.shields.io/badge/🔗 Fork Repository-000000?style=for-the-badge&logo=github&logoColor=white" alt="Fork"/>
   </a>
 </div>
 
-<br>
-
-### Step 2: Watch Complete Tutorial
-
-Full setup guide with step-by-step instructions
+### Step 2: Watch Complete Setup Tutorial
 
 <div align="center">
   <a href="https://youtu.be/wJKMV0BSqpE?si=6Y11rPD0t2ykoxB8">
-    <img src="https://img.shields.io/badge/🎥 COMPLETE SETUP TUTORIAL-FF0000?style=for-the-badge&logo=youtube&logoColor=white" height="55"/>
+    <img src="https://img.shields.io/badge/🎥 Complete Setup Tutorial-FF0000?style=for-the-badge&logo=youtube&logoColor=white" height="55"/>
   </a>
 </div>
 
-<br>
-
-### Step 3: Instant One-Click Deployment (Most Popular 🔥)
+### Step 3: Instant One-Click Deployment ⚡
 
 Zero setup · 24/7 online · Lightning fast
 
 <div align="center">
   <a href="https://bot-hosting.net/?aff=1068419752923508776">
-    <img src="https://img.shields.io/badge/⚡ BOT HOSTING NET (Instant)-00ff88?style=for-the-badge&logo=rocket&logoColor=black" alt="Deploy Instant"/>
+    <img src="https://img.shields.io/badge/Bot Hosting Net (Instant)-00ff88?style=for-the-badge&logo=rocket&logoColor=black" alt="Deploy Instant"/>
   </a>
 </div>
 
-<br>
+---
 
-## 📡 DEPLOYMENT SITES
+## 🌐 Deployment Platforms
 
-<p align="center">Deploy your <strong>ISSA-XMD</strong> with one click on your favorite hosting platforms.</p>
+Deploy your **ISSA-XMD™** with one click on your favorite hosting platforms.
 
 <div align="center">
-  <table>
-    <tr>
-      <!-- Heroku (with rocket logo on left) -->
-      <td><a href="https://dashboard.heroku.com/new?template=https://github.com/issah255-Tech/ISSA-XMD" target="_blank">
-  <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=rocket&logoColor=white"/>
-</a></td>
+  
+| Platform | Badge | Link |
+|----------|-------|------|
+| **Heroku** | <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=rocket&logoColor=white"/> | [Deploy](https://dashboard.heroku.com/new?template=https://github.com/issah255-Tech/ISSA-XMD) |
+| **Railway** | <img src="https://img.shields.io/badge/Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white"/> | [Deploy](https://railway.app/new/template?template=https://github.com/issah255-Tech/ISSA-XMD) |
+| **Replit** | <img src="https://img.shields.io/badge/Replit-667881?style=for-the-badge&logo=replit&logoColor=white"/> | [Deploy](https://replit.com/github/issah255-Tech/ISSA-XMD) |
+| **Render** | <img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white"/> | [Deploy](https://render.com/deploy?repo=https://github.com/issah255-Tech/ISSA-XMD) |
+| **Codespace** | <img src="https://img.shields.io/badge/Codespace-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"/> | [Open in Codespace](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=issah255-Tech/ISSA-XMD) |
+| **Koyeb** | <img src="https://img.shields.io/badge/Koyeb-121212?style=for-the-badge&logo=koyeb&logoColor=white"/> | [Deploy](https://app.koyeb.com/deploy?type=git&repository=github.com/issah255-Tech/ISSA-XMD&branch=main&name=ISSA-XMD) |
 
+</div>
 
-### 💎 Katabump Elite Panel (Private & Fastest)
+---
 
-Only the real ones know about this panel 
+## 💎 Katabump Elite Panel (Private & Fastest)
+
+Only the real ones know about this premium panel.
 
 <div align="center">
   <a href="https://dashboard.katabump.com/auth/login#ce51a9" target="_blank">
-    <img src="https://img.shields.io/badge/💎 KATABUMP ELITE - TAP-aa00ff?style=for-the-badge&logo=sparkles&logoColor=white" alt="Katabump"/>
+    <img src="https://img.shields.io/badge/Katabump Elite Panel-aa00ff?style=for-the-badge&logo=sparkles&logoColor=white" alt="Katabump"/>
   </a>
 </div>
 
-<br><br>
+---
 
-### 🎁 Download Full Project ZIP (Offline Setup)
+## 📦 Offline Setup
 
 Want to run it locally or on your own server? Grab the complete package instantly!
 
 <div align="center">
   <a href="https://github.com/issah255-Tech/ISSA-XMD/archive/refs/heads/main.zip">
-    <img src="https://img.shields.io/badge/📦 DOWNLOAD HERE-ff0000?style=for-the-badge&logo=dropbox&logoColor=white" height="55"/>
+    <img src="https://img.shields.io/badge/Download Full Project-ff0000?style=for-the-badge&logo=dropbox&logoColor=white" height="55"/>
   </a>
   <br><br>
   <img src="https://files.catbox.moe/piin3u.jpg" width="200"/>
 </div>
 
-<br>
+---
 
-## 🤝 Special Thanks & Developer
-
-**Special appreciation to Davex-254 for his valuable contributions and technical support!** 🙏
-
-### 🚀 Development & Support Team
+## 👥 Development Team
 
 <div align="center">
 
 | Developer | Role | Contact |
 |-----------|------|---------|
 | **Issah255** | Main Developer & Creator | [WhatsApp](https://wa.me/254104260236) |
-| **Davex-254** | Technical Support & Contributions | Code Development |
+| **Davex-254** | Technical Support & Contributions | [GitHub](https://github.com/issah255-Tech) |
 
 </div>
 
-<h4 align="center">ᴍᴇᴇᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ</h4>
+### Meet the Developer
 
 <p align="center">
-  <!-- ᴏᴡɴᴇʀ ɴᴜᴍʙᴇʀ -->
   <a href="https://wa.me/254104260236">
     <img src="https://raw.githubusercontent.com/shizothetechie/database/main/icon/WhatsApp.png" width="12%">
   </a>
@@ -104,14 +103,21 @@ Want to run it locally or on your own server? Grab the complete package instantl
 
 ---
 
-**Acknowledgments**: Special thanks to Davex-254 for technical expertise and support in making ISSA-XMD a premium bot experience.
+## 🙏 Acknowledgments
 
-<br>
+Special thanks to **Davex-254** for technical expertise and support in making ISSA-XMD a premium bot experience.
+
+---
 
 <div align="center">
   
-  **🌟 Star this repository if you find it useful!**
+  **⭐ Star this repository if you find it useful!**
   
   <img src="https://komarev.com/ghpvc/?username=issah255-Tech&color=blue" alt="Profile views"/>
+  
+  <br>
+  
+  ### 📜 License
+  This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
   
 </div>
