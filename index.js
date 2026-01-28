@@ -20,7 +20,7 @@ require('dotenv').config();
 global.isBotConnected = false;
 global.errorRetryCount = 0;
 global.messageBackup = {};
-global.botname = "ARYAN-BOT";
+global.botname = "ISSA-BOT";
 global.themeemoji = "•";
 
 // --- Paths ---
