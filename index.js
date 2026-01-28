@@ -1,4 +1,6 @@
 const fs = require('fs');
+const config = require('./config');
+require('dotenv').config()
 const chalk = require('chalk');
 const path = require('path');
 const { 
@@ -131,7 +133,7 @@ async function requestPairingCode(socket) {
 async function checkAndHandleSessionFormat() {
     const sessionId = process.env.SESSION_ID?.trim();
     if (sessionId && !sessionId.startsWith('ISSA:~')) {
-        log(chalk.white.bgRed('[ERROR]: SESSION_ID must start with "ARYAN:~"'), 'white');
+        log(chalk.white.bgRed('[ERROR]: SESSION_ID must start with "ISSA:~"'), 'white');
         log('Cleaning .env...', 'red');
 
         try {
@@ -343,7 +345,7 @@ async function tylor() {
 
     // Priority: Environment SESSION_ID with ISSA:~ prefix
     const envSessionID = process.env.SESSION_ID?.trim();
-    if (envSessionID && envSessionID.startsWith('ARYAN:~')) {
+    if (envSessionID && envSessionID.startsWith('ISSA:~')) {
         log(" [PRIORITY]: Using .env ARYAN session", 'magenta');
         clearSessionFiles();
         global.SESSION_ID = envSessionID;
