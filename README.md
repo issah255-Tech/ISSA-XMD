@@ -17,6 +17,23 @@ Secure your own copy of the most powerful source code.
   </a>
 </div>
 
+
+
+# 🔗 Pairing Link
+
+To easily generate a session for ISSA-XMD, use our web-based pairing tool:
+
+🌐 **Web Pairing:** [https://issaxpair-da203a913b06.herokuapp.com/pair](https://issaxpair-da203a913b06.herokuapp.com/pair)
+
+## How to Use:
+
+1. **Visit the pairing link above**
+2. **Enter your WhatsApp number** (with country code, e.g., 254XXXXXXXXX)
+3. **Scan the QR code** or **enter the pairing code** in WhatsApp
+4. **Copy the generated session ID** (starts with `ISSA:~`)
+5. **Add to your `.env` file:**
+
+
 ### Step 2: Watch Complete Setup Tutorial
 
 <div align="center">
