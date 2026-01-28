@@ -19,9 +19,14 @@ Secure your own copy of the most powerful source code.
 
 
 
+
 # 🔗 Pairing Link
 
 To easily generate a session for ISSA-XMD, use our web-based pairing tool:
+
+## Quick Access:
+[![Generate Session](https://img.shields.io/badge/Generate_Session-WhatsApp-green?style=for-the-badge&logo=whatsapp&logoColor=white)](https://issaxpair-da203a913b06.herokuapp.com/pair)
+[![Pair Now](https://img.shields.io/badge/Pair_Now-Web_Tool-blue?style=for-the-badge)](https://issaxpair-da203a913b06.herokuapp.com/pair)
 
 🌐 **Web Pairing:** [https://issaxpair-da203a913b06.herokuapp.com/pair](https://issaxpair-da203a913b06.herokuapp.com/pair)
 
@@ -32,6 +37,8 @@ To easily generate a session for ISSA-XMD, use our web-based pairing tool:
 3. **Scan the QR code** or **enter the pairing code** in WhatsApp
 4. **Copy the generated session ID** (starts with `ISSA:~`)
 5. **Add to your `.env` file:**
+
+
 
 
 ### Step 2: Watch Complete Setup Tutorial
