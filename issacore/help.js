@@ -299,7 +299,7 @@ const sendSlideHelpMenu = async (sock, chatId, message) => {
           message: {
             interactiveMessage: {
               body: { text: "*ꜱʟɪᴅᴇ ʀɪɢʜᴛ*" },
-              footer: { text: "©ᴘᴏᴡᴇʀᴅ ʙʏ ʟᴏꜰᴛ" },
+              footer: { text: "©ᴘᴏᴡᴇʀᴅ ʙʏ ISSA" },
               carouselMessage: { cards, messageVersion: 1 },
               contextInfo: { forwardingScore: 0, isForwarded: false }
             }
