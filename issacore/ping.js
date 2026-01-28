@@ -46,7 +46,7 @@ async function pingCommand(sock, chatId, message) {
 ┃  💾 *RAM Usage*   : ${ram}
 ┃  🖥️ *Platform*    : ${platform}
 ┃  ⚙️ *Processor*   : ${cpu}
-┃  📟 *Version*     : v${settings.version || '2.0'}
+┃  📟 *Version*     : v${settings.version || '1.0'}
 ┃  🌙 *Mode*        : Public • Premium
 ┣━━━━━━━━━━━━━━━━━━━━━
 ┃  🟢 *Status* : Fully Active & Stable
