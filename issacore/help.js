@@ -1,9 +1,9 @@
 // ──────────────────────────────────────────────────────────────
-//  MR issa – SLIDE MENU 
+//  MR issa – SIMPLE MENU 
 // ──────────────────────────────────────────────────────────────
 const settings = require('../settings');
 const axios = require('axios');
-const { prepareWAMessageMedia, generateWAMessageFromContent, proto } = require('@whiskeysockets/baileys');
+const { prepareWAMessageMedia } = require('@whiskeysockets/baileys');
 
 const IMAGES = [
   './image.jpg',
@@ -16,23 +16,33 @@ const IMAGES = [
 const READ_MORE = '\u200B'.repeat(4001);
 
 /**
- * Full Help Message (used only for building slides)
+ * Dynamic Uptime
+ */
+function getUptime() {
+  const uptime = process.uptime();
+  const hours = Math.floor(uptime / 3600);
+  const minutes = Math.floor((uptime % 3600) / 60);
+  const seconds = Math.floor(uptime % 60);
+  return `${hours}h ${minutes}m ${seconds}s`;
+}
+
+/**
+ * Full Help Message
  */
 const HELP_MESSAGE = `
 ╭▰▰〔 *ISSA-XMD* 〕▰▰╮
 ✖ 💠 *ʙᴏᴛ ɴᴀᴍᴇ:* ISSA-XMD
-✖ 👑 *ᴏᴡɴᴇʀ:* 𝚂𝚒𝚛 𝙻𝙾𝙵𝚃
+✖ 👑 *ᴏᴡɴᴇʀ:* 𝚂ir issa
 ✖ ⚙️ *ᴠᴇʀꜱɪᴏɴ:* 𝚕𝚊𝚝𝚎𝚜𝚝 𝚀𝚞𝚊𝚗𝚝𝚞𝚖
-✖ 💻 *ᴘʟᴀᴛꜰᴏʀᴍ:* 𝚀𝚞𝚊𝚗𝚝𝚞𝚖 (𝟸𝟸.𝟶𝟺)
+✖ 💻 *ᴘʟᴀᴛꜰᴏʀᴍ:* 𝚀𝚞𝚊𝚗𝚝𝚞𝚍 (𝟸𝟸.𝟶𝟺)
 ✖ 🕐 *ᴜᴘᴛɪᴍᴇ:* ${getUptime()}
 ▰▰▰▰▰▰▰▰▰▰
- ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʟᴏꜰᴛ™
+ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ISSA-XMD™
 ▰▰▰▰▰▰▰▰▰▰
-ꜰʀᴇᴇ ʙᴏᴛ 👉 https://quantum-three-taupe.vercel.app/
-ᴏᴡɴᴇʀ 👉 ꜱɪʀ ʟᴏꜰᴛ 
-ᴄᴏɴᴛᴀᴄᴛ 👉 +255778018545
+ꜰʀᴇᴇ ʙᴏᴛ 👉 https://t.me/Davexmini_bot
+ᴏᴡɴᴇʀ 👉 Issa
+ᴄᴏɴᴛᴀᴄᴛ 👉 +255742172342
 
-# ᴘᴀɢᴇ 01
 ✖ 𝐡𝐞𝐥𝐩 | .𝐦𝐞𝐧𝐮
 ✖ 𝐩𝐢𝐧𝐠
 ✖ 𝐚𝐥𝐢𝐯𝐞
@@ -54,7 +64,6 @@ const HELP_MESSAGE = `
 ✖ 𝐣𝐢𝐝
 ✖ 𝐮𝐫𝐥 
 
-# ᴘᴀɢᴇ 02
 ✖ 𝐛𝐚𝐧 @𝐮𝐬𝐞𝐫
 ✖ 𝐩𝐫𝐨𝐦𝐨𝐭𝐞 @𝐮𝐬𝐞𝐫
 ✖ 𝐝𝐞𝐦𝐨𝐭𝐞 @𝐮𝐬𝐞𝐫
@@ -80,7 +89,6 @@ const HELP_MESSAGE = `
 ✖ 𝐬𝐞𝐭𝐠𝐧𝐚𝐦𝐞 <𝐧𝐞𝐰 𝐧𝐚𝐦𝐞>
 ✖ 𝐬𝐞𝐭𝐠𝐩𝐩
 
-# ᴘᴀɢᴇ 03
 ✖ 𝐦𝐨𝐝𝐞 <𝐩𝐮𝐛𝐥𝐢𝐜/𝐩𝐫𝐢𝐯𝐚𝐭𝐞>
 ✖ 𝐜𝐥𝐞𝐚𝐫𝐬𝐞𝐬𝐬𝐢𝐨𝐧
 ✖ 𝐚𝐧𝐭𝐢𝐝𝐞𝐥𝐞𝐭𝐞
@@ -99,7 +107,6 @@ const HELP_MESSAGE = `
 ✖ 𝐬𝐞𝐭𝐦𝐞𝐧𝐭𝐢𝐨𝐧
 ✖ 𝐦𝐞𝐧𝐭𝐢𝐨𝐧 <𝐨𝐧/𝐨𝐟𝐟>
 
-# ᴘᴀɢᴇ 04
 ✖ 𝐛𝐥𝐮𝐫 <𝐢𝐦𝐚𝐠𝐞>
 ✖ 𝐬𝐢𝐦𝐚𝐠𝐞
 ✖ 𝐬𝐭𝐢𝐜𝐤𝐞𝐫
@@ -113,7 +120,6 @@ const HELP_MESSAGE = `
 ✖ 𝐢𝐠𝐬 <𝐢𝐧𝐬𝐭𝐚 𝐥𝐢𝐧𝐤>
 ✖ 𝐢𝐠𝐬𝐜 <𝐢𝐧𝐬𝐭𝐚 𝐥𝐢𝐧𝐤>
 
-# ᴘᴀɢᴇ 05
 ✖ 𝐩𝐢𝐞𝐬 <𝐜𝐨𝐮𝐧𝐭𝐫𝐲>
 ✖ 𝐜𝐡𝐢𝐧𝐚
 ✖ 𝐢𝐧𝐝𝐨𝐧𝐞𝐬𝐢𝐚
@@ -121,7 +127,6 @@ const HELP_MESSAGE = `
 ✖ 𝐤𝐨𝐫𝐞𝐚
 ✖ 𝐡𝐢𝐣𝐚𝐛
 
-# ᴘᴀɢᴇ 06
 ✖ 𝐭𝐢𝐜𝐭𝐚𝐜𝐭𝐨𝐞 @𝐮𝐬𝐞𝐫
 ✖ 𝐡𝐚𝐧𝐠𝐦𝐚𝐧
 ✖ 𝐠𝐮𝐞𝐬𝐬 <𝐥𝐞𝐭𝐭𝐞𝐫>
@@ -130,14 +135,12 @@ const HELP_MESSAGE = `
 ✖ 𝐭𝐫𝐮𝐭𝐡
 ✖ 𝐝𝐚𝐫𝐞
 
-# ᴘᴀɢᴇ 07
 ✖ 𝐠𝐩𝐭 <𝐪𝐮𝐞𝐬𝐭𝐢𝐨𝐧>
 ✖ 𝐠𝐞𝐦𝐢𝐧𝐢 <𝐪𝐮𝐞𝐬𝐭𝐢𝐨𝐧>
 ✖ 𝐢𝐦𝐚𝐠𝐢𝐧𝐞 <𝐩𝐫𝐨𝐦𝐩𝐭>
 ✖ 𝐟𝐥𝐮𝐱 <𝐩𝐫𝐨𝐦𝐩𝐭>
 ✖ 𝐬𝐨𝐫𝐚 <𝐩𝐫𝐨𝐦𝐩𝐭>
 
-# ᴘᴀɢᴇ 08
 ✖ 𝐜𝐨𝐦𝐩𝐥𝐢𝐦𝐞𝐧𝐭 @𝐮𝐬𝐞𝐫
 ✖ 𝐢𝐧𝐬𝐮𝐥𝐭 @𝐮𝐬𝐞𝐫
 ✖ 𝐟𝐥𝐢𝐫𝐭
@@ -150,7 +153,6 @@ const HELP_MESSAGE = `
 ✖ 𝐬𝐢𝐦𝐩 @𝐮𝐬𝐞𝐫
 ✖ 𝐬𝐭𝐮𝐩𝐢𝐝 @𝐮𝐬𝐞𝐫 [𝐭𝐞𝐱𝐭]
 
-# ᴘᴀɢᴇ 09
 ✖ 𝐦𝐞𝐭𝐚𝐥𝐥𝐢𝐜 <𝐭𝐞𝐱𝐭>
 ✖ 𝐢𝐜𝐞 <𝐭𝐞𝐱𝐭>
 ✖ 𝐬𝐧𝐨𝐰 <𝐭𝐞𝐱𝐭>
@@ -170,7 +172,6 @@ const HELP_MESSAGE = `
 ✖ 𝐠𝐥𝐢𝐭𝐜𝐡 <𝐭𝐞𝐱𝐭>
 ✖ 𝐟𝐢𝐫𝐞 <𝐭𝐞𝐱𝐭>
 
-# ᴘᴀɢᴇ 10
 ✖ 𝐩𝐥𝐚𝐲 <𝐬𝐨𝐧𝐠>
 ✖ 𝐬𝐨𝐧𝐠 <𝐬𝐨𝐧𝐠>
 ✖ 𝐬𝐩𝐨𝐭𝐢𝐟𝐲 <𝐪𝐮𝐞𝐫𝐲>
@@ -180,7 +181,6 @@ const HELP_MESSAGE = `
 ✖ 𝐯𝐢𝐝𝐞𝐨 <𝐬𝐨𝐧𝐠>
 ✖ 𝐲𝐭𝐦𝐩𝟒 <𝐥𝐢𝐧𝐤>
 
-# ᴘᴀɢᴇ 11
 ✖ 𝐡𝐞𝐚𝐫𝐭
 ✖ 𝐡𝐨𝐫𝐧𝐲
 ✖ 𝐜𝐢𝐫𝐜𝐥𝐞
@@ -198,7 +198,6 @@ const HELP_MESSAGE = `
 ✖ 𝐩𝐚𝐬𝐬𝐞𝐝
 ✖ 𝐭𝐫𝐢𝐠𝐠𝐞𝐫𝐞𝐝
 
-# ᴘᴀɢᴇ 12
 ✖ 𝐧𝐞𝐤𝐨
 ✖ 𝐰𝐚𝐢𝐟𝐮
 ✖ 𝐥𝐨𝐥𝐢
@@ -211,17 +210,6 @@ const HELP_MESSAGE = `
 ✖ 𝐰𝐢𝐧𝐤
 ✖ 𝐟𝐚𝐜𝐞𝐩𝐚𝐥𝐦
 `.trim();
-
-/**
- * Dynamic Uptime
- */
-function getUptime() {
-  const uptime = process.uptime();
-  const hours = Math.floor(uptime / 3600);
-  const minutes = Math.floor((uptime % 3600) / 60);
-  const seconds = Math.floor(uptime % 60);
-  return `${hours}h ${minutes}m ${seconds}s`;
-}
 
 /**
  * Pick Random Item from Array
@@ -241,130 +229,39 @@ const isValidUrl = async (url) => {
 };
 
 /**
- * SLIDE MENU - Interactive Carousel
- */
-const sendSlideHelpMenu = async (sock, chatId, message) => {
-  const quoted = message || null;
-
-  try {
-    const sections = HELP_MESSAGE.split('# ').filter(Boolean).map(s => '# ' + s);
-    const cards = [];
-
-    for (let i = 0; i < sections.length; i++) {
-      const section = sections[i];
-      const titleMatch = section.match(/# ([^\n]+)/);
-      const title = titleMatch ? titleMatch[1].trim() : `Section ${i + 1}`;
-      const imageUrl = IMAGES[i % IMAGES.length] || IMAGES[0];
-
-      let media = null;
-      try {
-        media = await prepareWAMessageMedia(
-          { image: { url: imageUrl } },
-          { upload: sock.waUploadToServer }
-        );
-      } catch (e) {
-        console.warn(`Image upload failed for slide ${i + 1}:`, e.message);
-      }
-
-      const header = proto.Message.InteractiveMessage.Header.create({
-        ...(media || {}),
-        title: `*${title}*`,
-        subtitle: "𝙻𝚘𝚏𝚝 𝚀𝚞𝚊𝚗𝚝𝚞𝚖 𝚇𝟽",
-        hasMediaAttachment: !!media,
-      });
-
-      const bodyText = section.replace(/^[^\n]*\n/, '').trim().split('\n').slice(0, 25).join('\n');
-
-      cards.push({
-        header,
-        body: { text: bodyText },
-        nativeFlowMessage: {
-          buttons: [
-            {
-              name: "quick_reply",
-              buttonParamsJson: JSON.stringify({
-                display_text: `View ${i + 1}`,
-                id: `view_help_${i + 1}`
-              })
-            }
-          ]
-        }
-      });
-    }
-
-    const carouselMessage = generateWAMessageFromContent(
-      chatId,
-      {
-        viewOnceMessage: {
-          message: {
-            interactiveMessage: {
-              body: { text: "*ꜱʟɪᴅᴇ ʀɪɢʜᴛ*" },
-              footer: { text: "©ᴘᴏᴡᴇʀᴅ ʙʏ ISSA" },
-              carouselMessage: { cards, messageVersion: 1 },
-              contextInfo: { forwardingScore: 0, isForwarded: false }
-            }
-          }
-        }
-      },
-      { quoted }
-    );
-
-    const sent = await sock.relayMessage(chatId, carouselMessage.message, {
-      messageId: carouselMessage.key.id
-    });
-
-    // Listener: React & Send Full Section on Button Press
-    const listener = async (m) => {
-      const mek = m.messages[0];
-      if (!mek.message) return;
-
-      const text = mek.message?.conversation || mek.message?.extendedTextMessage?.text || '';
-      const isReply = mek.message?.extendedTextMessage?.contextInfo?.stanzaId === sent.key.id;
-      const from = mek.key.remoteJid;
-
-      if (!isReply || from !== chatId) return;
-
-      await sock.sendMessage(from, { react: { text: 'Success', key: mek.key } });
-
-      const match = text.match(/view_help_(\d+)/);
-      if (match) {
-        const idx = parseInt(match[1]) - 1;
-        if (idx >= 0 && idx < sections.length) {
-          const selected = sections[idx];
-          const title = selected.match(/# ([^\n]+)/)?.[1]?.trim() || 'Menu';
-          const imageUrl = IMAGES[idx % IMAGES.length] || IMAGES[0];
-
-          await sock.sendMessage(from, {
-            image: { url: imageUrl },
-            caption: `*${title}*\n\n${selected.replace(/^#[^\n]*\n/, '').trim()}`
-          }, { quoted: mek });
-        }
-      }
-
-      sock.ev.off('messages.upsert', listener);
-    };
-
-    sock.ev.on('messages.upsert', listener);
-
-  } catch (error) {
-    console.error('Slide Menu Error:', error);
-    await sock.sendMessage(chatId, { text: '*Slide menu failed.*\n\n' + HELP_MESSAGE }, { quoted });
-  }
-};
-
-/**
- * Main Help Command – **SLIDE MENU ONLY**
+ * Simple Image + Text Menu
  */
 const helpCommand = async (sock, chatId, message) => {
   if (!sock || !chatId) return console.error('Missing sock or chatId');
 
   try {
-    // Directly send the interactive slide menu
-    await sendSlideHelpMenu(sock, chatId, message);
+    // Try to send with image
+    const imageUrl = IMAGES[0]; // Use first image
+    
+    try {
+      const media = await prepareWAMessageMedia(
+        { image: { url: imageUrl } },
+        { upload: sock.waUploadToServer }
+      );
+      
+      await sock.sendMessage(chatId, {
+        ...media,
+        caption: HELP_MESSAGE
+      }, { quoted: message });
+      
+    } catch (imageError) {
+      // If image fails, send text only
+      console.warn('Image upload failed, sending text only:', imageError.message);
+      await sock.sendMessage(chatId, { 
+        text: HELP_MESSAGE 
+      }, { quoted: message });
+    }
 
   } catch (error) {
-    console.error('helpCommand Error:', error);
-    await sock.sendMessage(chatId, { text: `*Error:* ${error.message}\n\n${HELP_MESSAGE}` }, { quoted: message });
+    console.error('Help Command Error:', error);
+    await sock.sendMessage(chatId, { 
+      text: HELP_MESSAGE 
+    }, { quoted: message });
   }
 };
 
