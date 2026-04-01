@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAVE TECH</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cyan: #00ffcc;
+      --pink: #ff2e63;
+      --purple: #7209b7;
+      --dark: #080810;
+      --darker: #050508;
+      --glass: rgba(0,255,204,.05);
+      --glass-border: rgba(0,255,204,.18);
+      --glow: 0 0 22px rgba(0,255,204,.4);
+      --glow-pink: 0 0 22px rgba(255,46,99,.4);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      font-family:'Montserrat',sans-serif;
+      background:var(--dark);
+      color:var(--cyan);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    /* ── Orbs background ── */
+    .orb {
+      position:fixed; border-radius:50%; pointer-events:none; z-index:0;
+      filter:blur(80px); opacity:.25;
+    }
+    .orb-1 { width:500px; height:500px; background:var(--purple); top:-150px; right:-150px; animation:orbFloat1 12s ease-in-out infinite; }
+    .orb-2 { width:400px; height:400px; background:var(--pink);   bottom:-100px; left:-100px; animation:orbFloat2 15s ease-in-out infinite; }
+    .orb-3 { width:300px; height:300px; background:var(--cyan);   top:40%; left:30%; animation:orbFloat3 10s ease-in-out infinite; }
+    @keyframes orbFloat1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,40px)} }
+    @keyframes orbFloat2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,-30px)} }
+    @keyframes orbFloat3 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(20px,-20px)} 66%{transform:translate(-20px,20px)} }
+
+    /* ── Floating particles ── */
+    .particles { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+    .particle {
+      position:absolute; border-radius:50%;
+      background:var(--cyan); opacity:0;
+      animation:particleFly linear infinite;
+    }
+    @keyframes particleFly {
+      0%   { opacity:0; transform:translateY(100vh) scale(0); }
+      10%  { opacity:.6; }
+      90%  { opacity:.3; }
+      100% { opacity:0; transform:translateY(-10vh) scale(1); }
+    }
+
+    /* ── Ticker ── */
+    .ticker-bar {
+      position:fixed; top:0; left:0; right:0; height:42px;
+      z-index:1000; display:flex; overflow:hidden;
+      background:rgba(5,5,8,.97); border-bottom:1px solid var(--glass-border);
+    }
+    .ticker-label {
+      flex-shrink:0; display:flex; align-items:center; padding:0 20px;
+      background:linear-gradient(90deg,var(--pink),var(--purple));
+      font-family:'Orbitron',sans-serif; font-size:.68rem; letter-spacing:2px;
+      color:#fff; white-space:nowrap; z-index:2;
+    }
+    .ticker-track { flex:1; overflow:hidden; display:flex; align-items:center; }
+    .ticker-items { display:flex; animation:tickerScroll 30s linear infinite; white-space:nowrap; }
+    .ticker-items span {
+      padding:0 36px; font-family:'Orbitron',sans-serif; font-size:.72rem;
+      color:var(--cyan); text-shadow:0 0 5px var(--cyan); position:relative;
+    }
+    .ticker-items span::after {
+      content:''; position:absolute; right:0; top:20%; height:60%; width:1px;
+      background:var(--glass-border);
+    }
+    @keyframes tickerScroll {
+      from { transform:translateX(100vw); }
+      to   { transform:translateX(-100%); }
+    }
+
+    /* ── Glowing edge on body sides ── */
+    body::before, body::after {
+      content:''; position:fixed; top:0; bottom:0; width:3px; z-index:9999; pointer-events:none;
+      background:linear-gradient(180deg,transparent 0%,var(--cyan) 30%,var(--pink) 60%,transparent 100%);
+      animation:edgePulse 4s ease-in-out infinite;
+    }
+    body::before { left:0; }
+    body::after  { right:0; animation-delay:2s; }
+    @keyframes edgePulse {
+      0%,100% { opacity:.18; transform:scaleY(1); }
+      50%      { opacity:.7;  transform:scaleY(1.05); }
+    }
+
+    /* ── Navbar ── */
+    .navbar {
+      position:fixed; top:42px; left:0; right:0; z-index:900;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 32px; height:58px;
+      background:rgba(5,5,8,.88); backdrop-filter:blur(16px);
+      border-bottom:1px solid transparent;
+      box-shadow: 0 1px 0 0 var(--glass-border), 0 2px 20px rgba(0,255,204,.12);
+      animation:navbarGlow 3s ease-in-out infinite;
+    }
+    @keyframes navbarGlow {
+      0%,100% { box-shadow: 0 1px 0 0 rgba(0,255,204,.18), 0 2px 18px rgba(0,255,204,.1); }
+      50%      { box-shadow: 0 1px 0 0 rgba(0,255,204,.5),  0 2px 28px rgba(0,255,204,.28); }
+    }
+    .nav-logo {
+      font-family:'Orbitron',sans-serif; font-size:1.05rem; font-weight:900;
+      color:var(--cyan); text-shadow:var(--glow); text-decoration:none;
+    }
+    .nav-logo span { color:var(--pink); }
+    .nav-links { display:flex; gap:22px; list-style:none; }
+    .nav-links a {
+      font-size:.72rem; letter-spacing:1px; color:rgba(0,255,204,.65);
+      text-decoration:none; text-transform:uppercase; font-family:'Orbitron',sans-serif;
+      transition:all .3s;
+    }
+    .nav-links a:hover { color:var(--cyan); text-shadow:var(--glow); }
+
+    /* ── Page wrapper ── */
+    .page { position:relative; z-index:1; padding-top:100px; }
+
+    /* ── Sections ── */
+    section { padding:70px 24px; max-width:1200px; margin:0 auto; }
+
+    .section-title {
+      font-family:'Orbitron',sans-serif;
+      font-size:clamp(1.3rem,3vw,2rem);
+      color:var(--pink); text-shadow:var(--glow-pink);
+      text-align:center; margin-bottom:44px;
+      position:relative;
+    }
+    .section-title::after {
+      content:''; display:block; width:60px; height:2px; margin:12px auto 0;
+      background:linear-gradient(90deg,var(--pink),var(--purple));
+      border-radius:2px;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      min-height:88vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; gap:24px;
+      padding:120px 24px 80px; max-width:100%;
+    }
+
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:5px 18px; border:1px solid var(--pink); border-radius:50px;
+      font-size:.68rem; font-family:'Orbitron',sans-serif; letter-spacing:2px;
+      color:var(--pink);
+      animation:pulseBadge 2.2s ease-in-out infinite;
+    }
+    .badge-dot { width:6px; height:6px; border-radius:50%; background:var(--pink); animation:pulseDot 1.2s ease-in-out infinite; }
+    @keyframes pulseBadge {
+      0%,100% { box-shadow:0 0 0 0 rgba(255,46,99,.4); }
+      50%      { box-shadow:0 0 0 10px rgba(255,46,99,0); }
+    }
+    @keyframes pulseDot { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+    .hero-title {
+      font-family:'Orbitron',sans-serif;
+      font-size:clamp(2.5rem,7vw,5rem);
+      font-weight:900; line-height:1.05; color:#fff;
+    }
+    .hero-title .a1 { color:var(--cyan); text-shadow:var(--glow); }
+    .hero-title .a2 { color:var(--pink); text-shadow:var(--glow-pink); }
+
+    /* Typing cursor effect on subtitle */
+    .hero-sub {
+      font-family:'Orbitron',sans-serif; font-size:clamp(.8rem,1.8vw,.95rem);
+      color:rgba(0,255,204,.55); letter-spacing:3px; text-transform:uppercase;
+      overflow:hidden; white-space:nowrap;
+      border-right:2px solid var(--cyan);
+      animation:typeIn 2s steps(30) forwards, blink .8s step-end infinite 2s;
+      max-width:fit-content; margin:0 auto;
+    }
+    @keyframes typeIn { from{width:0} to{width:100%} }
+    @keyframes blink  { 50%{border-color:transparent} }
+
+    /* ── Buttons ── */
+    .btn {
+      padding:.75em 2em;
+      font-family:'Orbitron',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:1.5px;
+      text-transform:uppercase; border-radius:10px; cursor:pointer;
+      transition:all .3s ease; text-decoration:none;
+      display:inline-flex; align-items:center; gap:8px;
+      position:relative; overflow:hidden;
+    }
+    /* Shimmer sweep inside button */
+    .btn::after {
+      content:''; position:absolute; top:0; left:-120%; width:80%; height:100%;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,.12),transparent);
+      transition:left .45s ease;
+    }
+    .btn:hover::after { left:140%; }
+    .btn-primary {
+      background:transparent; border:2px solid var(--cyan); color:var(--cyan);
+      text-shadow:0 0 5px var(--cyan);
+      box-shadow:0 0 0 0 rgba(0,255,204,0), inset 0 0 0 0 rgba(0,255,204,0);
+    }
+    .btn-primary:hover {
+      background:rgba(0,255,204,.1);
+      box-shadow:0 0 18px rgba(0,255,204,.45), 0 0 40px rgba(0,255,204,.15), inset 0 0 12px rgba(0,255,204,.08);
+      color:#fff; transform:translateY(-2px);
+      border-color:var(--cyan);
+    }
+    .btn-accent {
+      background:linear-gradient(135deg,var(--pink),var(--purple)); border:none; color:#fff;
+    }
+    .btn-accent:hover {
+      box-shadow:0 0 18px rgba(255,46,99,.55), 0 0 40px rgba(114,9,183,.3);
+      transform:translateY(-2px);
+    }
+    .btn:active { transform:scale(.95); }
+
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+
+    /* ── Glass card (shared) ── */
+    .card {
+      background:var(--glass); border:1px solid var(--glass-border);
+      border-radius:14px; padding:26px 22px;
+      position:relative; overflow:hidden;
+      opacity:0; transform:translateY(40px);
+      transition:opacity .6s ease, transform .6s ease, box-shadow .4s ease, border-color .4s ease;
+    }
+    .card.visible { opacity:1; transform:translateY(0); }
+
+    /* Shimmer sweep on hover */
+    .card::before {
+      content:''; position:absolute; top:0; left:-100%; width:100%; height:2px;
+      background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+      transition:left .55s;
+    }
+    .card:hover::before { left:100%; }
+
+    /* Glowing corner brackets */
+    .card::after {
+      content:'';
+      position:absolute; inset:0; border-radius:14px; pointer-events:none;
+      background:transparent;
+      box-shadow:inset 0 0 0 1px rgba(0,255,204,.0);
+      transition:box-shadow .4s ease;
+    }
+    .card:hover::after {
+      box-shadow:
+        inset 0 0 0 1px rgba(0,255,204,.35),
+        0 0 18px rgba(0,255,204,.18),
+        0 0 40px rgba(0,255,204,.08);
+    }
+    .card:hover {
+      border-color:rgba(0,255,204,.5);
+      box-shadow:
+        0 0 20px rgba(0,255,204,.2),
+        0 0 40px rgba(0,255,204,.1),
+        0 8px 32px rgba(0,0,0,.5);
+    }
+
+    /* Corner accent marks */
+    .card .corner { position:absolute; width:14px; height:14px; }
+    .card .corner-tl { top:8px;  left:8px;  border-top:2px solid var(--cyan); border-left:2px solid var(--cyan);  border-radius:3px 0 0 0; }
+    .card .corner-tr { top:8px;  right:8px; border-top:2px solid var(--pink); border-right:2px solid var(--pink); border-radius:0 3px 0 0; }
+    .card .corner-bl { bottom:8px; left:8px;  border-bottom:2px solid var(--pink); border-left:2px solid var(--pink);  border-radius:0 0 0 3px; }
+    .card .corner-br { bottom:8px; right:8px; border-bottom:2px solid var(--cyan); border-right:2px solid var(--cyan); border-radius:0 0 3px 0; }
+    .card .corner { opacity:.4; transition:opacity .4s, box-shadow .4s; }
+    .card:hover .corner { opacity:1; }
+    .card:hover .corner-tl, .card:hover .corner-br { box-shadow:0 0 8px var(--cyan); }
+    .card:hover .corner-tr, .card:hover .corner-bl { box-shadow:0 0 8px var(--pink); }
+
+    /* stagger delays */
+    .card:nth-child(1) { transition-delay:.05s; }
+    .card:nth-child(2) { transition-delay:.15s; }
+    .card:nth-child(3) { transition-delay:.25s; }
+    .card:nth-child(4) { transition-delay:.1s;  }
+    .card:nth-child(5) { transition-delay:.2s;  }
+    .card:nth-child(6) { transition-delay:.3s;  }
+
+    .card-icon { font-size:1.8rem; margin-bottom:14px; color:var(--cyan); text-shadow:var(--glow); }
+    .card h3 { font-family:'Orbitron',sans-serif; font-size:.95rem; color:var(--pink); margin-bottom:8px; }
+    .card p { font-size:.82rem; color:rgba(0,255,204,.65); line-height:1.6; }
+
+    /* ── Features ── */
+    .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .feature-card .btn { width:100%; justify-content:center; margin-top:18px; }
+
+    /* ── Devices section ── */
+    #devices {
+      background:rgba(0,0,0,.45); border-top:1px solid var(--glass-border);
+      border-bottom:1px solid var(--glass-border); padding:70px 24px; max-width:100%;
+    }
+    #devices .inner {
+      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start;
+    }
+    .devices-info h2 {
+      font-family:'Orbitron',sans-serif; font-size:clamp(1.2rem,2.5vw,1.8rem);
+      color:var(--pink); text-shadow:var(--glow-pink); margin-bottom:20px;
+    }
+    .stat-row { display:flex; gap:28px; flex-wrap:wrap; }
+    .stat-item { text-align:center; }
+    .stat-num { font-family:'Orbitron',sans-serif; font-size:1.8rem; font-weight:900; color:var(--cyan); text-shadow:var(--glow); }
+    .stat-label { font-size:.7rem; color:rgba(0,255,204,.45); letter-spacing:1px; margin-top:2px; }
+
+    .notif-panel { background:rgba(0,0,0,.65); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden; max-height:400px; }
+    .notif-panel-header {
+      background:rgba(0,255,204,.05); border-bottom:1px solid var(--glass-border);
+      padding:12px 16px; display:flex; align-items:center; justify-content:space-between;
+    }
+    .notif-panel-header span { font-family:'Orbitron',sans-serif; font-size:.7rem; color:var(--cyan); letter-spacing:1px; }
+    .live-dot { width:7px; height:7px; border-radius:50%; background:#00ff88; box-shadow:0 0 7px #00ff88; animation:livePulse 1.3s ease-in-out infinite; }
+    @keyframes livePulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(1.5)} }
+
+    .notif-list { list-style:none; padding:10px; display:flex; flex-direction:column; gap:8px; overflow-y:auto; max-height:345px; }
+    .notif-list::-webkit-scrollbar { width:3px; }
+    .notif-list::-webkit-scrollbar-thumb { background:var(--glass-border); border-radius:4px; }
+
+    .notif-item {
+      display:flex; align-items:center; gap:10px; padding:10px 12px;
+      background:rgba(0,255,204,.03); border:1px solid rgba(0,255,204,.09); border-radius:9px;
+      animation:notifSlide .4s ease forwards; opacity:0;
+    }
+    @keyframes notifSlide { from{opacity:0;transform:translateX(16px)} to{opacity:1;transform:translateX(0)} }
+
+    .notif-avatar {
+      width:34px; height:34px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;
+    }
+    .notif-avatar.connected { background:rgba(0,255,136,.12); border:1px solid rgba(0,255,136,.35); color:#00ff88; }
+    .notif-avatar.paired    { background:rgba(0,212,255,.12); border:1px solid rgba(0,212,255,.35); color:#00d4ff; }
+    .notif-avatar.deployed  { background:rgba(255,46,99,.12);  border:1px solid rgba(255,46,99,.35);  color:var(--pink); }
+    .notif-avatar.qr        { background:rgba(114,9,183,.12); border:1px solid rgba(114,9,183,.35); color:#c77dff; }
+
+    .notif-body { flex:1; min-width:0; }
+    .notif-title { font-size:.78rem; font-weight:600; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .notif-meta  { font-size:.68rem; color:rgba(0,255,204,.45); margin-top:2px; }
+    .notif-time  { font-size:.65rem; color:rgba(0,255,204,.3); flex-shrink:0; font-family:'Orbitron',sans-serif; }
+    .notif-tag   { font-size:.6rem; padding:2px 7px; border-radius:50px; font-weight:700; flex-shrink:0; }
+    .tag-connected { background:rgba(0,255,136,.18); color:#00ff88; border:1px solid rgba(0,255,136,.25); }
+    .tag-paired    { background:rgba(0,212,255,.18);  color:#00d4ff; border:1px solid rgba(0,212,255,.25); }
+    .tag-deployed  { background:rgba(255,46,99,.18);  color:var(--pink); border:1px solid rgba(255,46,99,.25); }
+    .tag-qr        { background:rgba(199,125,255,.18);color:#c77dff; border:1px solid rgba(199,125,255,.25); }
+
+    /* ── About ── */
+    #about .about-inner { display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; }
+    #about .about-text h2 { font-family:'Orbitron',sans-serif; font-size:clamp(1.2rem,2.5vw,1.8rem); color:var(--pink); text-shadow:var(--glow-pink); margin-bottom:16px; }
+    .tech-chips { display:flex; flex-wrap:wrap; gap:8px; }
+    .chip { padding:4px 12px; border:1px solid var(--glass-border); border-radius:50px; font-size:.7rem; font-family:'Orbitron',sans-serif; color:var(--cyan); background:var(--glass); }
+
+    .about-visual { display:flex; flex-direction:column; gap:14px; }
+    .progress-item label { display:flex; justify-content:space-between; font-size:.72rem; color:rgba(0,255,204,.55); margin-bottom:5px; font-family:'Orbitron',sans-serif; }
+    .progress-bar { height:5px; background:rgba(0,255,204,.08); border-radius:50px; overflow:hidden; }
+    .progress-fill { height:100%; border-radius:50px; background:linear-gradient(90deg,var(--cyan),var(--pink)); box-shadow:0 0 6px rgba(0,255,204,.35); transition:width 1.5s ease; width:0; }
+
+    /* ── Contact ── */
+    #contact .contact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .contact-card { text-align:center; padding:28px 18px; }
+    .contact-card i { font-size:2rem; margin-bottom:12px; display:block; }
+    .contact-card h4 { font-family:'Orbitron',sans-serif; font-size:.82rem; color:var(--pink); margin-bottom:6px; }
+    .contact-card a { color:var(--cyan); text-decoration:none; font-size:.82rem; }
+    .contact-card a:hover { text-shadow:var(--glow); }
+
+    /* ── Footer ── */
+    footer {
+      background:var(--darker); border-top:1px solid var(--glass-border);
+      padding:36px 24px; text-align:center; position:relative; z-index:1;
+    }
+    .footer-logo { font-family:'Orbitron',sans-serif; font-size:1.2rem; font-weight:900; color:var(--cyan); text-shadow:var(--glow); margin-bottom:14px; }
+    .footer-logo span { color:var(--pink); }
+    .footer-links { display:flex; justify-content:center; gap:24px; margin-bottom:16px; flex-wrap:wrap; }
+    .footer-links a { font-size:1.3rem; color:rgba(0,255,204,.55); transition:all .3s; }
+    .footer-links a:hover { color:var(--cyan); text-shadow:var(--glow); transform:translateY(-3px); }
+    .footer-copy { font-size:.75rem; color:rgba(0,255,204,.3); }
+
+    /* ── Responsive ── */
+    @media(max-width:900px){
+      .features-grid { grid-template-columns:1fr 1fr; }
+      #devices .inner { grid-template-columns:1fr; }
+      #about .about-inner { grid-template-columns:1fr; }
+      #contact .contact-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:600px){
+      .features-grid { grid-template-columns:1fr; }
+      .nav-links { display:none; }
+      .ticker-label { padding:0 12px; font-size:.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Glow orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- Particles container (filled by JS) -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Ticker -->
+  <div class="ticker-bar">
+    <div class="ticker-label"><i class="fas fa-satellite-dish" style="margin-right:8px"></i>LIVE</div>
+    <div class="ticker-track">
+      <div class="ticker-items">
+        <span>Welcome to Dave Tech Sessions!</span>
+        <span>Get your WhatsApp Bot Session ID instantly</span>
+        <span>QR Code &amp; Pairing Code supported</span>
+        <span>Deploy DAVE X on Heroku for free</span>
+        <span>Secure ● Fast ● Reliable</span>
+        <span>Join DAVE TECH community today</span>
+        <span>Session IDs delivered directly to your WhatsApp</span>
+        <span>Welcome to Dave Tech Sessions!</span>
+        <span>Get your WhatsApp Bot Session ID instantly</span>
+        <span>QR Code &amp; Pairing Code supported</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a class="nav-logo" href="#hero">DAVE <span>X</span> BOT</a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+
+    <!-- ══ HERO ══ -->
+    <section id="hero">
+      <div class="hero-badge"><div class="badge-dot"></div> Session Generator Active</div>
+      <h1 class="hero-title">
+        <span class="a1">DAVE</span> <span class="a2">X</span><br>BOT
+      </h1>
+      <div class="hero-sub">WhatsApp Bot Session Centre</div>
+      <div class="hero-actions">
+        <a href="/qr"   class="btn btn-primary"><i class="fas fa-qrcode"></i> QR Code</a>
+        <a href="/pair" class="btn btn-primary"><i class="fas fa-mobile-screen"></i> Pair Code</a>
+        <a href="https://davexultra-5aa1a9e4e62a.herokuapp.com/" target="_blank" class="btn btn-accent"><i class="fas fa-rocket"></i> Deploy Bot</a>
+      </div>
+    </section>
+
+    <!-- ══ FEATURES ══ -->
+    <section id="features">
+      <h2 class="section-title">What We Offer</h2>
+      <div class="features-grid">
+        <div class="card feature-card">
+          <span class="corner corner-tl"></span><span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span><span class="corner corner-br"></span>
+          <div class="card-icon"><i class="fas fa-qrcode"></i></div>
+          <h3>QR Code Pairing</h3>
+          <a href="/qr" class="btn btn-primary">Get QR Code</a>
+        </div>
+        <div class="card feature-card">
+          <span class="corner corner-tl"></span><span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span><span class="corner corner-br"></span>
+          <div class="card-icon"><i class="fas fa-mobile-screen-button"></i></div>
+          <h3>8-Digit Pair Code</h3>
+          <a href="/pair" class="btn btn-primary">Get Pair Code</a>
+        </div>
+        <div class="card feature-card">
+          <span class="corner corner-tl"></span><span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span><span class="corner corner-br"></span>
+          <div class="card-icon"><i class="fas fa-rocket"></i></div>
+          <h3>Deploy Bot</h3>
+          <a href="https://davexultra-5aa1a9e4e62a.herokuapp.com/" target="_blank" class="btn btn-accent">Deploy Now</a>
+        </div>
+        <div class="card feature-card">
+          <span class="corner corner-tl"></span><span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span><span class="corner corner-br"></span>
+          <div class="card-icon"><i class="fas fa-shield-halved"></i></div>
+          <h3>Secure Sessions</h3>
+        </div>
+        <div class="card feature-card">
+          <span class="corner corner-tl"></span><span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span><span class="corner corner-br"></span>
+          <div class="card-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Lightning Fast</h3>
+        </div>
+        <div class="card feature-card">
+          <span class="corner corner-tl"></span><span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span><span class="corner corner-br"></span>
+          <div class="card-icon"><i class="fas fa-users"></i></div>
+          <h3>Community Support</h3>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══ ABOUT ══ -->
+    <section id="about">
+      <div class="about-inner">
+        <div class="about-text card visible" style="opacity:1;transform:none">
+          <h2>About Us</h2>
+          <div class="tech-chips" style="margin-top:0">
+            <span class="chip">Node.js</span>
+            <span class="chip">Baileys</span>
+            <span class="chip">Express</span>
+            <span class="chip">WhatsApp Web</span>
+            <span class="chip">Base64</span>
+            <span class="chip">Heroku</span>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div class="progress-item">
+            <label><span>Session Reliability</span><span>98%</span></label>
+            <div class="progress-bar"><div class="progress-fill" data-width="98"></div></div>
+          </div>
+          <div class="progress-item">
+            <label><span>Delivery Speed</span><span>95%</span></label>
+            <div class="progress-bar"><div class="progress-fill" data-width="95"></div></div>
+          </div>
+          <div class="progress-item">
+            <label><span>Uptime</span><span>99%</span></label>
+            <div class="progress-bar"><div class="progress-fill" data-width="99"></div></div>
+          </div>
+          <div class="progress-item">
+            <label><span>User Satisfaction</span><span>97%</span></label>
+            <div class="progress-bar"><div class="progress-fill" data-width="97"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CONTACT ══ -->
+    <section id="contact">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-grid">
+        <div class="card contact-card">
+          <span class="corner corner-tl"></span><span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span><span class="corner corner-br"></span>
+          <i class="fab fa-whatsapp" style="color:#25d366"></i>
+          <h4>WhatsApp</h4>
+          <a href="https://wa.me/254104260236">+254 756 182 478</a>
+        </div>
+        <div class="card contact-card">
+          <span class="corner corner-tl"></span><span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span><span class="corner corner-br"></span>
+          <i class="fab fa-telegram" style="color:#229ed9"></i>
+          <h4>Telegram</h4>
+          <a href="https://t.me/Digladoo" target="_blank">@Digladoo</a>
+        </div>
+        <div class="card contact-card">
+          <span class="corner corner-tl"></span><span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span><span class="corner corner-br"></span>
+          <i class="fab fa-youtube" style="color:#ff0000"></i>
+          <h4>YouTube</h4>
+          <a href="https://youtube.com/" target="_blank">@davlodavlo19</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+      <div class="footer-logo">DAVE <span>X</span> BOT</div>
+      <div class="footer-links">
+        <a href="https://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/gifted_dave_?igsh=YzZ0NDRoaXFxM2Zk" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://t.me/Digladoo" target="_blank"><i class="fab fa-telegram"></i></a>
+        <a href="https://github.com/vinpink2" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://wa.me/254792021944" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <p class="footer-copy">© Dave Tech💗</p>
+    </footer>
+
+  </div><!-- /page -->
+
+  <!-- GetButton.io widget -->
+  <script>
+    (function () {
+      var options = {
+        sms:"+254787909276", sms_color:"#129BF4",
+        whatsapp:"+254756182478", telegram:"@giddy_tennor",
+        call_to_action:"Message us", button_color:"#FF318E",
+        position:"left", order:"sms,whatsapp,telegram",
+        pre_filled_message:"hey Giddy Tennor i have come with greetings from your session",
+      };
+      var proto='https:', host="getbutton.io", url=proto+'//static.'+host;
+      var s=document.createElement('script'); s.type='text/javascript'; s.async=true;
+      s.src=url+'/widget-send-button/js/init.js';
+      s.onload=function(){ WhWidgetSendButton.init(host,proto,options); };
+      var x=document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s,x);
+    })();
+  </script>
+
+  <script>
+    /* ── Floating Particles ── */
+    (function() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 28; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 4 + 1.5;
+        p.style.cssText = `
+          width:${size}px; height:${size}px;
+          left:${Math.random()*100}%;
+          animation-duration:${8 + Math.random()*14}s;
+          animation-delay:${Math.random()*12}s;
+          opacity:0;
+          ${Math.random() > 0.5 ? 'background:var(--cyan)' : Math.random() > 0.5 ? 'background:var(--pink)' : 'background:var(--purple)'};
+        `;
+        container.appendChild(p);
+      }
+    })();
+
+    /* ── Scroll-reveal cards ── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.card').forEach(c => revealObserver.observe(c));
+
+    /* ── Progress bars on scroll ── */
+    const progressObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.progress-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width + '%';
+          });
+          progressObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('#about').forEach(el => progressObserver.observe(el));
+
+  </script>
+
+</body>
+</html>

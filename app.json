@@ -1,43 +1,17 @@
 {
-  "name": "issa-md",
-  "description": "issa, your friendly assistant bot with nodejs!",
-  "logo": "https://h.uguu.se/GiYWpWoC.jpg",
-  "keywords": [],
-  "repository": "https://github.com/gifteddevsmd/DAVE-X",
-  "stack": "container",
-  "addons": [
-    {
-      "plan": "heroku-postgresql"
-    }
-  ],
-  "scripts": {
-    "start": "node index.js"
-  },
-"env": {
-  "SESSION_ID": {
-    "description": "Must begin with 'ISSA-AI:~'.",
-    "value": "",
-    "required": true
-  }
-},  
-  "formation": {
-    "worker": {
-      "quantity": 1,
-      "size": "standard-2x"
-    }
-  },
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    },
-    {
-      "url": "https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git"
-    },
-    {
-      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-    },
-    {
-      "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
-    }
-  ]
+    "name": "Session Generator",
+    "description": "Web Session Generator",
+    "logo": "https://files.catbox.moe/52699c.jpg",
+    "repository": "https://github.com/mauricegift/gifted-sess",
+    "keywords": ["Gifted-Tech"],
+    "success_url": "/", 
+    "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
+    "env": {      
+      "PORT": {
+        "description": "Port for web app.4000,5000,3000... any!",
+        "value": "5000",
+        "required": false 
+      }
+    }   
+
 }

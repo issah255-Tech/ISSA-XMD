@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JUNE X BOT – QR Code</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cyan: #00ffcc;
+      --pink: #ff2e63;
+      --purple: #7209b7;
+      --dark: #080810;
+      --glass: rgba(0,255,204,.05);
+      --glass-border: rgba(0,255,204,.18);
+      --glow: 0 0 24px rgba(0,255,204,.4);
+      --glow-pink: 0 0 24px rgba(255,46,99,.4);
+      --radius: 16px;
+      --blur: 14px;
+      --tr: .3s cubic-bezier(.25,.8,.25,1);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      padding: 100px 20px 50px;
+    }
+
+    /* Blurred BG */
+    .bg-img {
+      position: fixed; inset:0; z-index:-1;
+      background: url('https://url.bwmxmd.online/Adams.twcferrg.jpg') center/cover no-repeat;
+      filter: blur(10px) brightness(0.15);
+      transform: scale(1.08);
+    }
+
+    /* Ticker */
+    .ticker-bar {
+      position:fixed; top:0; left:0; right:0; height:40px;
+      z-index:1000; display:flex; overflow:hidden;
+      background:rgba(5,5,8,.96); border-bottom:1px solid var(--glass-border);
+    }
+    .ticker-label {
+      flex-shrink:0; display:flex; align-items:center; padding:0 16px;
+      background:linear-gradient(90deg,var(--pink),var(--purple));
+      font-family:'Orbitron',sans-serif; font-size:.65rem; letter-spacing:2px; color:#fff; white-space:nowrap;
+    }
+    .ticker-track { flex:1; overflow:hidden; display:flex; align-items:center; }
+    .ticker-items {
+      display:flex; white-space:nowrap;
+      animation:tickerScroll 22s linear infinite;
+    }
+    .ticker-items span {
+      padding:0 32px; font-family:'Orbitron',sans-serif; font-size:.68rem;
+      color:var(--cyan); text-shadow:0 0 5px var(--cyan);
+    }
+    @keyframes tickerScroll {
+      from { transform:translateX(100vw); }
+      to   { transform:translateX(-100%); }
+    }
+
+    /* Header */
+    header {
+      position:fixed; top:40px; left:0; right:0; z-index:900;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:.9rem 2rem;
+      background:rgba(8,8,16,.85); backdrop-filter:blur(var(--blur));
+      border-bottom:1px solid var(--glass-border);
+    }
+    .logo-wrap { display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .logo-img { width:36px; height:36px; border-radius:50%; object-fit:cover; border:2px solid rgba(0,255,204,.3); }
+    .logo-text {
+      font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:900;
+      background:linear-gradient(135deg,var(--cyan),var(--pink));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .back-btn {
+      display:flex; align-items:center; gap:6px;
+      padding:6px 16px; border:1px solid var(--glass-border); border-radius:50px;
+      font-family:'Orbitron',sans-serif; font-size:.65rem; letter-spacing:1px;
+      color:var(--cyan); text-decoration:none; background:var(--glass);
+      transition:all .3s;
+    }
+    .back-btn:hover { border-color:var(--cyan); box-shadow:var(--glow); color:#fff; }
+
+    /* Main card */
+    .qr-card {
+      width:100%; max-width:420px;
+      background:var(--glass);
+      backdrop-filter:blur(var(--blur));
+      border:1px solid var(--glass-border);
+      border-radius:var(--radius);
+      padding:2rem;
+      box-shadow:0 20px 60px rgba(0,0,0,.6);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      animation:cardIn .6s ease forwards;
+    }
+    @keyframes cardIn {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .qr-card::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),transparent);
+      animation:shimmer 2.5s linear infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position:-200% 0; }
+      100% { background-position:200% 0; }
+    }
+
+    h2 {
+      font-family:'Orbitron',sans-serif;
+      font-size:1.4rem; font-weight:900;
+      background:linear-gradient(135deg,var(--cyan),var(--pink));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      margin-bottom:6px;
+    }
+    .sub { font-size:.75rem; color:rgba(0,255,204,.5); letter-spacing:2px; margin-bottom:1.6rem; font-family:'Orbitron',sans-serif; }
+
+    /* QR frame */
+    .qr-frame {
+      width:240px; height:240px;
+      margin:0 auto 1.4rem;
+      border-radius:12px;
+      border:2px solid var(--glass-border);
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(0,0,0,.4);
+      position:relative;
+      overflow:hidden;
+    }
+    .qr-frame::before, .qr-frame::after {
+      content:'';
+      position:absolute;
+      width:20px; height:20px;
+      border-color:var(--cyan);
+      border-style:solid;
+    }
+    .qr-frame::before { top:8px; left:8px; border-width:3px 0 0 3px; }
+    .qr-frame::after  { bottom:8px; right:8px; border-width:0 3px 3px 0; }
+
+    #qr-img {
+      width:100%; height:100%;
+      object-fit:contain;
+      border-radius:10px;
+      display:none;
+      padding:8px;
+    }
+
+    /* Spinner */
+    .spinner-wrap { display:flex; flex-direction:column; align-items:center; gap:14px; }
+    .spinner {
+      width:48px; height:48px;
+      border:3px solid rgba(0,255,204,.15);
+      border-top-color:var(--cyan);
+      border-radius:50%;
+      animation:spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .spinner-label { font-size:.78rem; color:rgba(0,255,204,.5); font-family:'Orbitron',sans-serif; letter-spacing:1px; }
+
+    /* Status */
+    .status-bar {
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 16px; border-radius:50px;
+      background:rgba(0,0,0,.3); border:1px solid var(--glass-border);
+      font-size:.75rem; color:rgba(0,255,204,.7); font-family:'Orbitron',sans-serif;
+      letter-spacing:1px; margin-bottom:1.2rem;
+    }
+    .status-dot {
+      width:7px; height:7px; border-radius:50%;
+      background:var(--cyan); box-shadow:0 0 6px var(--cyan);
+      animation:pulseDot 1.2s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.3; transform:scale(1.5); }
+    }
+    .status-dot.ready { background:#00ff88; box-shadow:0 0 6px #00ff88; animation:none; }
+    .status-dot.error { background:var(--pink); box-shadow:0 0 6px var(--pink); animation:none; }
+
+    /* Steps */
+    .steps { display:flex; flex-direction:column; gap:8px; margin-bottom:1.4rem; }
+    .step {
+      display:flex; align-items:center; gap:10px;
+      padding:9px 12px; border-radius:9px;
+      background:rgba(0,0,0,.25); border:1px solid rgba(255,255,255,.05);
+      font-size:.76rem; color:rgba(255,255,255,.6); text-align:left;
+    }
+    .step-n {
+      width:22px; height:22px; border-radius:50%; flex-shrink:0;
+      border:1.5px solid var(--cyan); color:var(--cyan);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Orbitron',sans-serif; font-size:.65rem;
+    }
+    .step strong { color:rgba(0,255,204,.9); }
+
+    /* Buttons */
+    .btn-row { display:flex; gap:10px; justify-content:center; }
+    .btn {
+      padding:.6em 1.4em; border-radius:8px; cursor:pointer;
+      font-family:'Orbitron',sans-serif; font-size:.72rem; letter-spacing:1px;
+      text-transform:uppercase; text-decoration:none;
+      display:inline-flex; align-items:center; gap:7px; transition:all .3s;
+    }
+    .btn-primary { background:transparent; border:1.5px solid var(--cyan); color:var(--cyan); }
+    .btn-primary:hover { background:rgba(0,255,204,.12); box-shadow:var(--glow); color:#fff; }
+    .btn-accent { background:linear-gradient(135deg,var(--pink),var(--purple)); border:none; color:#fff; }
+    .btn-accent:hover { box-shadow:var(--glow-pink); transform:translateY(-2px); }
+
+    footer { margin-top:28px; font-size:.72rem; color:rgba(0,255,204,.3); font-family:'Orbitron',sans-serif; letter-spacing:1px; }
+
+    @media (max-width:480px) {
+      .qr-frame { width:200px; height:200px; }
+      .qr-card { padding:1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-img"></div>
+
+  <!-- Ticker -->
+  <div class="ticker-bar">
+    <div class="ticker-label"><i class="fas fa-qrcode" style="margin-right:6px"></i>QR</div>
+    <div class="ticker-track">
+      <div class="ticker-items">
+        <span>Open WhatsApp → Linked Devices → Link a Device</span>
+        <span>Point your camera at the QR code below</span>
+        <span>Your JUNE X BOT session ID will be sent to you</span>
+        <span>Open WhatsApp → Linked Devices → Link a Device</span>
+        <span>Point your camera at the QR code below</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a class="logo-wrap" href="/">
+      <img src="https://url.bwmxmd.online/Adams.twcferrg.jpg" alt="Logo" class="logo-img">
+      <div class="logo-text">JUNE X BOT</div>
+    </a>
+    <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Home</a>
+  </header>
+
+  <div class="qr-card">
+    <h2>QR CODE</h2>
+    <div class="sub">JUNE X BOT · SCAN TO CONNECT</div>
+
+    <div class="status-bar">
+      <div class="status-dot" id="status-dot"></div>
+      <span id="status-text">Generating QR Code…</span>
+    </div>
+
+    <div class="qr-frame" id="qr-frame">
+      <div class="spinner-wrap" id="spinner">
+        <div class="spinner"></div>
+        <div class="spinner-label">Connecting…</div>
+      </div>
+      <img id="qr-img" alt="QR Code">
+    </div>
+
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><span>Open <strong>WhatsApp</strong> on your phone</span></div>
+      <div class="step"><div class="step-n">2</div><span>Tap <strong>Linked Devices</strong> → <strong>Link a Device</strong></span></div>
+      <div class="step"><div class="step-n">3</div><span>Point camera at the QR code above</span></div>
+      <div class="step"><div class="step-n">4</div><span>Your <strong>Session ID</strong> is sent to your WhatsApp</span></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="loadQR()"><i class="fas fa-rotate-right"></i> Refresh QR</button>
+      <a href="/pair" class="btn btn-accent"><i class="fas fa-mobile-screen"></i> Pair Code</a>
+    </div>
+  </div>
+
+  <footer>© supreme 💗</footer>
+
+  <script>
+    const qrImg    = document.getElementById('qr-img');
+    const spinner  = document.getElementById('spinner');
+    const statusDot  = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+
+    function setStatus(state, text) {
+      statusText.textContent = text;
+      statusDot.className = 'status-dot' + (state === 'ready' ? ' ready' : state === 'error' ? ' error' : '');
+    }
+
+    function loadQR() {
+      qrImg.style.display = 'none';
+      spinner.style.display = 'flex';
+      setStatus('loading', 'Generating QR Code…');
+
+      const ts = Date.now();
+      const img = new Image();
+      img.onload = () => {
+        spinner.style.display = 'none';
+        qrImg.src = img.src;
+        qrImg.style.display = 'block';
+        setStatus('ready', 'QR Ready — Scan Now!');
+        // Auto-refresh after 55 seconds (QR expires ~60s)
+        setTimeout(loadQR, 55000);
+      };
+      img.onerror = () => {
+        spinner.style.display = 'none';
+        setStatus('error', 'Failed — tap Refresh QR');
+        spinner.innerHTML = '<i class="fas fa-triangle-exclamation" style="font-size:2rem;color:var(--pink)"></i><div class="spinner-label" style="color:var(--pink)">Error loading QR</div>';
+        spinner.style.display = 'flex';
+      };
+      img.src = '/scan?' + ts;
+    }
+
+    window.addEventListener('load', loadQR);
+  </script>
+</body>
+</html>
