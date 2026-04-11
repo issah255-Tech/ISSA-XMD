@@ -17,4 +17,3 @@ const settings = {
 };
 
 module.exports = settings;
-https://github.com/issah255-Tech/ISSA-XMD
