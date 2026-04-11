@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.ibb.co/NnFRdWxm/upload-1771680267489-4b4129c8-jpg.jpg" alt="ISSA-XMD" width="300"/>
+  <img src="https://files.catbox.moe/rchb1p.jpg" alt="ISSA-XMD" width="300"/>
 </p>
 
 <p align="center">
