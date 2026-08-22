@@ -1,86 +1,64 @@
+# Issah X Bot
+
 <p align="center">
-  <img src="https://files.catbox.moe/rchb1p.jpg" alt="ISSA-XMD" width="300"/>
+  <strong>A fast WhatsApp bot for groups, media, AI, automation, and entertainment.</strong>
 </p>
 
 <p align="center">
-  <a href="https://ultragenerator.onrender.com/">
-    <img src="https://img.shields.io/badge/Pair_Code-Get_Your_Code-purple?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Pair Code" width="220">
-  </a>
-
-  <a href="https://github.com/issah255-Tech/ISSA-XMD/fork">
-    <img src="https://img.shields.io/badge/Fork_Repo-ISSA--XMD-blue?style=for-the-badge&logo=github&logoColor=white" alt="Fork Repo" width="220">
-  </a>
-
-  <a href="https://github.com/issah255-Tech/ISSA-XMD/archive/refs/heads/main.zip">
-    <img src="https://img.shields.io/badge/Download_Zip-Get_Backup-green?style=for-the-badge&logo=download&logoColor=white" alt="Download ZIP" width="220">
-  </a>
+  <a href="https://github.com/issah255-Tech/ISSA-XMD"><img src="https://img.shields.io/badge/ISSAH_TECH-REPOSITORY-52525B?style=for-the-badge&labelColor=18181B&logo=github&logoColor=F4F4F5" alt="Issah Tech Repository"></a>
+  <a href="https://github.com/issah255-Tech/ISSA-XMD"><img src="https://img.shields.io/badge/PAIRING_GUIDE-OPEN-52525B?style=for-the-badge&labelColor=18181B&logo=whatsapp&logoColor=F4F4F5" alt="Open Pairing Guide"></a>
 </p>
 
----
+## About
 
-## 🚀 DEPLOYMENT PLATFORMS
+Issah X Bot is a multi-device WhatsApp automation bot with group administration, moderation, media processing, AI tools, downloaders, games, status utilities, and configurable automation features.
 
-<p align="center">Deploy <strong>ISSA-XMD</strong> instantly on your preferred platform.</p>
+The bot is designed for a standard Node.js runtime. Credentials, session data, API keys, and database files belong in the deployment environment and must not be committed to the project.
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/issah255-Tech/ISSA-XMD" target="_blank"><img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/></a></td>
-      <td align="center"><a href="https://replit.com/github/issah255-Tech/ISSA-XMD" target="_blank"><img src="https://img.shields.io/badge/Replit-F26207?style=for-the-badge&logo=replit&logoColor=white"/></a></td>
-    </tr>
-    <tr>
-      <td align="center"><a href="https://app.koyeb.com/deploy?type=git&repository=github.com/issah255-Tech/ISSA-XMD" target="_blank"><img src="https://img.shields.io/badge/Koyeb-FF009D?style=for-the-badge&logo=koyeb&logoColor=white"/></a></td>
-      <td align="center"><a href="https://railway.app/new/template?template=https://github.com/issah255-Tech/ISSA-XMD" target="_blank"><img src="https://img.shields.io/badge/Railway-FF8700?style=for-the-badge&logo=railway&logoColor=white"/></a></td>
-    </tr>
-    <tr>
-      <td align="center"><a href="https://render.com/deploy?repo=https://github.com/issah255-Tech/ISSA-XMD" target="_blank"><img src="https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white"/></a></td>
-      <td align="center"><a href="https://app.netlify.com/start/deploy?repository=https://github.com/issah255-Tech/ISSA-XMD" target="_blank"><img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white"/></a></td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center"><a href="https://dashboard.katabump.com/auth/login#ce51a9" target="_blank"><img src="https://img.shields.io/badge/Katabump-FF6B6B?style=for-the-badge&logo=cloudflare&logoColor=white"/></a></td>
-    </tr>
-  </table>
-</div>
+## Setup
 
----
+```bash
+npm install
+npm start
+```
 
-## 🎥 VIDEO TUTORIAL
+Configure the required environment variables on the host before starting the bot. If no valid WhatsApp session is available, follow the pairing instructions displayed by the process.
 
-<p align="center">
-  <a href="https://youtu.be/wJKMV0BSqpE?si=6Y11rPD0t2ykoxB8" target="_blank">
-    <img src="https://img.shields.io/badge/📺_WATCH_TUTORIAL-red?style=for-the-badge&logo=youtube&logoColor=white" width="280">
-  </a>
-</p>
+## Examples
 
-<p align="center">
-  <strong>How to deploy ISSA-XMD on any panel in 2026</strong><br>
-  Step-by-step video guide — get your bot running in minutes.
-</p>
+```text
+.menu
+.ping
+.tosgroup Group announcement
+.tourl
+.sticker
+.play song name
+```
 
----
+Use `.menu` in WhatsApp to view the current command catalogue. Some commands require owner, sudo, or group-administrator access.
 
-## 👨‍💻 ABOUT THE AUTHOR
+## Features
 
-> **Issah Tech** — building powerful bots with passion.
+- Group management, moderation, protection, and member tools.
+- Text, image, video, audio, document, and sticker utilities.
+- Music and video download commands with provider fallbacks.
+- AI chat, lyrics, sports, anime, search, and other API-backed tools.
+- Auto-read, auto-react, auto-typing, auto-recording, and chatbot modes.
+- Owner settings, anti-delete, anti-edit, status tools, and runtime controls.
+- Group-status posting through `.tosgroup` and its active aliases.
 
----
+## Project
 
-## 📌 QUICK TIPS
+The official project repository is maintained by **Issah Tech**:
 
-- On free panels, set your session ID in the `.env` file
-- If the bot stops responding, try generating a new session ID or redeploy
-- For detailed steps, watch the tutorial above
+[![Open ISSA-XMD Repository](https://img.shields.io/badge/OPEN_ISSA--XMD_REPOSITORY-52525B?style=for-the-badge&labelColor=18181B&logo=github&logoColor=F4F4F5)](https://github.com/issah255-Tech/ISSA-XMD)
 
----
+## Security
 
-## ⭐ SUPPORT THE PROJECT
+Never publish WhatsApp authentication state, pairing information, access tokens, private API keys, `.env` files, SQLite databases, logs, or runtime directories. Keep backups private and share only redacted error output.
 
-If you find this bot useful, consider:
-- ⭐ Starring the repository
-- 🍴 Forking for your own use
-- 📢 Sharing with friends
-- 💬 Leaving a comment on the tutorial
+## Credits
 
----
+**Issah X Bot** is maintained and branded by **Issah Tech**.
 
 **© 2026 Issah Tech. All rights reserved.**

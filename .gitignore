@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.*
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.log
+*.lock
+*.tmp
+*.swp
+data/
+auth/
+session/
+sessions/

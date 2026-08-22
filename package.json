@@ -1,6 +1,6 @@
 {
-  "name": "issah bot",
-  "version": "1.0.0",
+  "name": "issah-x-bot",
+  "version": "3.0.0",
   "private": true,
   "type": "commonjs",
   "main": "index.js",
@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
-    "@whiskeysockets/baileys": "npm:davexbaileys@2.5.21",
+    "@hapi/boom": "^10.0.1",
+    "@whiskeysockets/baileys": "npm:davexbaileys@latest",
     "archiver": "^7.0.1",
+    "adm-zip": "^0.5.16",
     "awesome-phonenumber": "^7.8.0",
     "axios": "^1.13.5",
     "better-sqlite3": "^12.6.2",
@@ -25,11 +27,13 @@
     "form-data": "^4.0.5",
     "fs-extra": "^11.3.3",
     "gifted-baileys": "^2.5.8",
+    "gifted-btns": "^1.0.2",
     "google-tts-api": "^2.0.2",
     "got": "^14.6.6",
     "gradient-string": "^3.0.0",
     "gtts": "^0.2.1",
     "human-readable": "^0.2.1",
+    "javascript-obfuscator": "^5.4.1",
     "jimp": "^1.6.0",
     "lodash": "^4.17.23",
     "moment-timezone": "^0.6.0",
@@ -54,11 +58,13 @@
     "similarity": "^1.2.1",
     "telegraf": "^4.16.3",
     "telegraf-ratelimit": "^2.0.0",
+    "toxic-baileys": "^1.0.5",
     "uuid": "^13.0.0",
     "wa-sticker-formatter": "^4.4.4",
     "webp-converter": "^2.3.3",
     "yargs": "^18.0.0",
     "yt-search": "^2.13.1",
     "ytdl-core": "^4.11.5"
-  }
+  },
+  "description": "Issah X Bot - WhatsApp automation, group tools, AI, media, and entertainment."
 }
