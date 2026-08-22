@@ -1,11 +1,14 @@
 {
-  "name": "DAVE-X ULTRA",
-  "description": "DAVE X WhatsApp Bot",
+  "name": "ISSAH-X-BOT",
+  "description": "Issah X Bot — WhatsApp automation by Issah Tech",
   "logo": "https://h.uguu.se/GiYWpWoC.jpg",
   "keywords": [
-    "whatsapp-bot"
+    "whatsapp-bot",
+    "issah-x-bot",
+    "issah-tech"
   ],
-  "repository": "https://github.com/Davex-254/DAVE-X-ULTRA",
+  "repository": "https://github.com/issah255-Tech/ISSA-XMD",
+  "website": "https://github.com/issah255-Tech/ISSA-XMD",
   "stack": "container",
   "addons": [
     {
@@ -17,7 +20,7 @@
   },
   "env": {
     "SESSION_ID": {
-      "description": "Must begin with 'DAVE-X:~'.",
+      "description": "WhatsApp session string. Supported prefixes: ISSAH-X-BOT:, ISSAH-X:~, ISSAH-X:, SESSION:, BAILEYS:, or MD:.",
       "value": "",
       "required": true
     }

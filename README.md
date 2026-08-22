@@ -1,28 +1,42 @@
 # Issah X Bot
 
 <p align="center">
-  <strong>A fast WhatsApp bot for groups, media, AI, automation, and entertainment.</strong>
+  <strong>Fast WhatsApp automation for groups, media, AI, and everyday utilities.</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/issah255-Tech/ISSA-XMD"><img src="https://img.shields.io/badge/ISSAH_TECH-REPOSITORY-52525B?style=for-the-badge&labelColor=18181B&logo=github&logoColor=F4F4F5" alt="Issah Tech Repository"></a>
-  <a href="https://github.com/issah255-Tech/ISSA-XMD"><img src="https://img.shields.io/badge/PAIRING_GUIDE-OPEN-52525B?style=for-the-badge&labelColor=18181B&logo=whatsapp&logoColor=F4F4F5" alt="Open Pairing Guide"></a>
+  <a href="https://github.com/issah255-Tech/ISSA-XMD"><img src="https://img.shields.io/badge/REPOSITORY-ISSA--XMD-52525B?style=for-the-badge&labelColor=18181B&logo=github&logoColor=F4F4F5" alt="ISSA-XMD repository"></a>
+  <a href="https://heroku.com/deploy?template=https://github.com/issah255-Tech/ISSA-XMD"><img src="https://img.shields.io/badge/HEROKU-DEPLOY-52525B?style=for-the-badge&labelColor=18181B&logo=heroku&logoColor=F4F4F5" alt="Deploy to Heroku"></a>
+  <a href="https://github.com/issah255-Tech/ISSA-XMD/fork"><img src="https://img.shields.io/badge/FORK-ISSA--XMD-52525B?style=for-the-badge&labelColor=18181B&logo=github&logoColor=F4F4F5" alt="Fork ISSA-XMD"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/issah255-Tech/ISSA-XMD/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/DOWNLOAD-SOURCE-71717A?style=for-the-badge&labelColor=27272A&logo=github&logoColor=F4F4F5" alt="Download source"></a>
+  <a href="https://github.com/issah255-Tech/ISSA-XMD#setup"><img src="https://img.shields.io/badge/PAIRING-GUIDE-71717A?style=for-the-badge&labelColor=27272A&logo=whatsapp&logoColor=F4F4F5" alt="Pairing guide"></a>
 </p>
 
 ## About
 
-Issah X Bot is a multi-device WhatsApp automation bot with group administration, moderation, media processing, AI tools, downloaders, games, status utilities, and configurable automation features.
+**Issah X Bot** is a multi-device WhatsApp bot maintained by **Issah Tech**. It combines group administration, moderation, media tools, AI utilities, downloaders, games, status features, and configurable automation in one Node.js project.
 
-The bot is designed for a standard Node.js runtime. Credentials, session data, API keys, and database files belong in the deployment environment and must not be committed to the project.
+The public repository contains the obfuscated runtime source. Keep WhatsApp authentication state, credentials, API keys, databases, and logs outside the repository.
 
-## Setup
+## Deploy with Heroku
+
+The repository is prepared for Heroku container deployment. The root contains `app.json`, `Dockerfile`, and `heroku.yml`; the app manifest points to this repository and declares the worker process and PostgreSQL add-on.
+
+[![Deploy Issah X Bot to Heroku](https://img.shields.io/badge/DEPLOY_ISSAH_X_BOT-HEROKU-52525B?style=for-the-badge&labelColor=18181B&logo=heroku&logoColor=F4F4F5)](https://heroku.com/deploy?template=https://github.com/issah255-Tech/ISSA-XMD)
+
+After deployment, set the required `SESSION_ID` configuration variable in the Heroku app. The supported session prefixes are `ISSAH-X-BOT:`, `ISSAH-X:~`, `ISSAH-X:`, `SESSION:`, `BAILEYS:`, and `MD:`.
+
+## Run locally
 
 ```bash
 npm install
 npm start
 ```
 
-Configure the required environment variables on the host before starting the bot. If no valid WhatsApp session is available, follow the pairing instructions displayed by the process.
+If no valid session is configured, follow the pairing instructions shown by the bot process. Do not place a real session string in a committed file.
 
 ## Examples
 
@@ -47,11 +61,11 @@ Use `.menu` in WhatsApp to view the current command catalogue. Some commands req
 - Owner settings, anti-delete, anti-edit, status tools, and runtime controls.
 - Group-status posting through `.tosgroup` and its active aliases.
 
-## Project
+## Official project
 
-The official project repository is maintained by **Issah Tech**:
+[![Open ISSA-XMD](https://img.shields.io/badge/OPEN-ISSA--XMD-52525B?style=for-the-badge&labelColor=18181B&logo=github&logoColor=F4F4F5)](https://github.com/issah255-Tech/ISSA-XMD)
 
-[![Open ISSA-XMD Repository](https://img.shields.io/badge/OPEN_ISSA--XMD_REPOSITORY-52525B?style=for-the-badge&labelColor=18181B&logo=github&logoColor=F4F4F5)](https://github.com/issah255-Tech/ISSA-XMD)
+The project is maintained and branded by **Issah Tech**.
 
 ## Security
 
@@ -59,6 +73,6 @@ Never publish WhatsApp authentication state, pairing information, access tokens,
 
 ## Credits
 
-**Issah X Bot** is maintained and branded by **Issah Tech**.
+**Issah X Bot** — maintained by **Issah Tech**.
 
 **© 2026 Issah Tech. All rights reserved.**
