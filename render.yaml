@@ -1,0 +1,11 @@
+services:
+  - type: worker
+    name: issah-x-bot
+    runtime: docker
+    repo: https://github.com/issah255-Tech/ISSA-XMD
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: SESSION_ID
+        sync: false
